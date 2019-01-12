@@ -38,8 +38,6 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
             </SCRIPT>
             <SCRIPT type="text/javascript" SRC="../include/isomorphic_tr/locales/frameworkMessages_tr_TR.properties">
             </SCRIPT>
-            <SCRIPT type="text/javascript" SRC="error.js">
-            </SCRIPT>
 <!--            <script src="js/amcharts.js" type="text/javascript"></script>-->
             <link rel='stylesheet' href='calendar/fullcalendar.css' />
             <script src='lib/jquery.min.js'></script>
