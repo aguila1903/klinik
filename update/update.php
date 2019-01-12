@@ -33,8 +33,9 @@ function domainAvailable($strDomain) {
 
 function updateCheck($update_logs) {
 
-
     $update = shell_exec("git pull -f");
+
+
     $date = date("Y-m-d H:i:s") . ": \n";
     if (trim($update) != "Already up to date." && $update !== null) {
 
@@ -107,13 +108,13 @@ if ($update == "nope" && $type == "auto") {
     $out{'response'}{'status'} = 1;
 } elseif ($update == "nope" && $type == "menu") {
     $out{'response'}{'status'} = 0;
-    $update = "Keine neuen Updates vorhanden!";
+    $update = "Güncelleme bulunamadi!";
 } else {
     $out{'response'}{'status'} = 0;
     $text = "<br /><br /><b>Güncelleme yapildi!</b><br />Güncellemelerin etkin hale gelmesi icin lütfen TAMAM tusunu tiklayiniz.";
 }
 $out{'response'}{'errors'} = array();
-$out{'response'}{'data'} = $update.$text;
+$out{'response'}{'data'} = $update . $text;
 
 print json_encode($out);
 ?>

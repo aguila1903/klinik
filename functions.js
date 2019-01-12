@@ -208,7 +208,7 @@
         {
                 if (value)
                 {
-                    if (rueckmeldung != "Keine neuen Updates vorhanden!") // Es gab tatsächlich ein Update!
+                    if (rueckmeldung != "Güncelleme bulunamadi!") // Es gab tatsächlich ein Update!
                     {
                         window.location.reload(true);
         }

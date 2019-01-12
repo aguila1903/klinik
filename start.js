@@ -10667,4 +10667,4 @@
   dfAddPosition.getField("mwst_").hide();
   dfEditAbrechnung2.getField("mwst_").hide();
   agenda(_Heute, _view);
-  doUpdate("auto");
+//  doUpdate("auto");
