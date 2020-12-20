@@ -79,30 +79,30 @@ $value = array();
 
 while (!$rs->EOF) {
 
-//       $value{$i}{"name"} = $rs->fields{'name'};
-    $value{$i}{"title"} = $rs->fields{'title'};
-//       $value{$i}{"description"} = $rs->fields{'description'};
-    $value{$i}{"id"} = $rs->fields{'id'};
-    // $value{$i}{"startDate"} = str_replace(' ', 'T', $rs->fields{'startDate'});
-    // $value{$i}{"endDate"} = str_replace(' ', 'T', $rs->fields{'endDate'});
-    $value{$i}{"start"} = $rs->fields{'start'};
-    $value{$i}{"end"} = $rs->fields{'end'};
-    $value{$i}{"description"} = "Test";
-    if (date('Y-m-d') == substr($rs->fields{'start'}, 0, 10)) {
-        $value{$i}{"color"} = 'green';
-        $value{$i}{"textColor"} = 'white';
+//       $value{$i}['name'] = $rs->fields['name'];
+    $value{$i}['title'] = $rs->fields['title'];
+//       $value{$i}['description'] = $rs->fields['description'];
+    $value{$i}['id'] = $rs->fields['id'];
+    // $value{$i}['startDate'] = str_replace(' ', 'T', $rs->fields['startDate']);
+    // $value{$i}['endDate'] = str_replace(' ', 'T', $rs->fields['endDate']);
+    $value{$i}['start'] = $rs->fields['start'];
+    $value{$i}['end'] = $rs->fields['end'];
+    $value{$i}['description'] = "Test";
+    if (date('Y-m-d') == substr($rs->fields['start'], 0, 10)) {
+        $value{$i}['color'] = 'green';
+        $value{$i}['textColor'] = 'white';
     } else {
-        if (str_replace("-", "", substr($rs->fields{'start'}, 0, 10)) > date('Ymd')) {
-            $value{$i}{"color"} = 'orange';
-            $value{$i}{"textColor"} = 'black';
+        if (str_replace("-", "", substr($rs->fields['start'], 0, 10)) > date('Ymd')) {
+            $value{$i}['color'] = 'orange';
+            $value{$i}['textColor'] = 'black';
         } else {
-            $value{$i}{"color"} = 'grey';
-            $value{$i}{"textColor"} = 'white';
+            $value{$i}['color'] = 'grey';
+            $value{$i}['textColor'] = 'white';
         }
     }
-//    file_put_contents("datum.txt", str_replace("-", "", substr($rs->fields{'start'}, 0, 10))."\n", FILE_APPEND);
-//       $value{$i}{"canEdit"} = "false";
-    // $value{$i}{"eventWindowStyle"} = "testStyle";
+//    file_put_contents("datum.txt", str_replace("-", "", substr($rs->fields['start'], 0, 10))."\n", FILE_APPEND);
+//       $value{$i}['canEdit'] = "false";
+    // $value{$i}['eventWindowStyle'] = "testStyle";
 
     $i++;
 
@@ -118,8 +118,8 @@ $out = array();
 
 // zentrale Anwortfunktion f�r REST-Datenquellen
 // im Kern nicht anderes als print json_encode($value)
-$out{'response'}{'status'} = 0;
-$out{'response'}{'errors'} = array();
-$out{'response'}{'data'} = $value;
+$out['response']['status'] = 0;
+$out['response']['errors'] = array();
+$out['response']['data'] = $value;
 
 print json_encode($value);

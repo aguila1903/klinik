@@ -91,22 +91,22 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login) {
     $data = array();
 
     while (!$rs->EOF) {
-        $data{$i}{"prod_kz"} = trim($rs->fields{'prod_kz'});
-        $data{$i}{"kunden_name"} = trim($rs->fields{'kunden_name'});
-        $data{$i}{"prod_bez"} = trim($rs->fields{'prod_bez'});
-        $data{$i}{"lfn"} = $rs->fields{'lfn'};
-        $data{$i}{"lfd_nr"} = $rs->fields{'lfd_nr'};
-        $data{$i}{"kunden_nr"} = $rs->fields{'kunden_nr'};
-        $data{$i}{"user"} = trim($rs->fields{'user'});
-        $data{$i}{"aenderdat"} = $rs->fields{'aenderdat'};
-        $data{$i}{"a_inhalt"} = trim($rs->fields{'a_inhalt'});
-        $data{$i}{"n_inhalt"} = trim($rs->fields{'n_inhalt'});
-        $data{$i}{"feld"} = trim($rs->fields{'feld'});
-        $data{$i}{"codetext"} = trim($rs->fields{'codetext'});
+        $data{$i}['prod_kz'] = trim($rs->fields['prod_kz']);
+        $data{$i}['kunden_name'] = trim($rs->fields['kunden_name']);
+        $data{$i}['prod_bez'] = trim($rs->fields['prod_bez']);
+        $data{$i}['lfn'] = $rs->fields['lfn'];
+        $data{$i}['lfd_nr'] = $rs->fields['lfd_nr'];
+        $data{$i}['kunden_nr'] = $rs->fields['kunden_nr'];
+        $data{$i}['user'] = trim($rs->fields['user']);
+        $data{$i}['aenderdat'] = $rs->fields['aenderdat'];
+        $data{$i}['a_inhalt'] = trim($rs->fields['a_inhalt']);
+        $data{$i}['n_inhalt'] = trim($rs->fields['n_inhalt']);
+        $data{$i}['feld'] = trim($rs->fields['feld']);
+        $data{$i}['codetext'] = trim($rs->fields['codetext']);
 
-//    if ($value{$i}{"aktiv"} == 0) {
+//    if ($value{$i}['aktiv'] == 0) {
 //        $id = 0; 
-//        $value{$i}{"_hilite"} = $id;
+//        $value{$i}['_hilite'] = $id;
 //    }
  
         $i++;

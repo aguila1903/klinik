@@ -37,8 +37,8 @@ $out = array();
 
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -51,8 +51,8 @@ $dbSyb->debug = false;
 if (isset($_REQUEST["datum"])) {
     $datum = $_REQUEST["datum"];
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('datum' => "Datum fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('datum' => "Datum fehlt!");
 
     print json_encode($out);
 
@@ -70,8 +70,8 @@ $rs = $dbSyb->Execute($sqlQuery);
 $value = array();
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
@@ -80,8 +80,8 @@ if (!$rs) {
 
     while (!$rs->EOF) {
 
-        $value{"nextTermin"} = $rs->fields{'nextTermin'};
-        $value{"nextEndTime"} = $rs->fields{'nextEndTime'};
+        $value['nextTermin'] = $rs->fields['nextTermin'];
+        $value['nextEndTime'] = $rs->fields['nextEndTime'];
 
         $i++;
 
@@ -91,8 +91,8 @@ if (!$rs) {
 
     $rs->Close();
 
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $value;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $value;
 
     print json_encode($out);

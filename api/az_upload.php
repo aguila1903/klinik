@@ -76,8 +76,8 @@ if (isset($_FILES['datei'])) {
 if (isset($_REQUEST["lfd_nr"])) {
     $lfd_nr = $_REQUEST["lfd_nr"];
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "lfd_nr eksik");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "lfd_nr eksik");
 
     print ($out);
     return;
@@ -87,24 +87,24 @@ if (isset($_REQUEST["name"])) {
     $name = $_REQUEST["name"];
     if ($name != "null" && $name != "") {
         if (strlen($name) > 64 || strlen($name) < 1) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('name' => "Soyisim en az 64 harf'den olusmali");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('name' => "Soyisim en az 64 harf'den olusmali");
 
             print ($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('name' => "Soyisim eksik");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('name' => "Soyisim eksik");
 
         print ($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('name' => "Soyisim eksik");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('name' => "Soyisim eksik");
 
     print ($out);
 
@@ -114,24 +114,24 @@ if (isset($_REQUEST["vorname"])) {
     $vorname = $_REQUEST["vorname"];
     if ($vorname != "null" && $vorname != "") {
         if (strlen($vorname) > 64 || strlen($vorname) < 1) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('vorname' => "Isim en az 64 harf'den olusmali");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('vorname' => "Isim en az 64 harf'den olusmali");
 
             print ($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('vorname' => "Isim eksik");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('vorname' => "Isim eksik");
 
         print ($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('vorname' => "Isim eksik");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('vorname' => "Isim eksik");
 
     print ($out);
 

@@ -37,8 +37,8 @@ $out = array();
 
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => utf8_encode($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => utf8_encode($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -52,16 +52,16 @@ if (isset($_REQUEST["kunden_nr"])) {
     if ($kunden_nr != "null" && $kunden_nr != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($kunden_nr))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('errors' => "Bitte die Menge prüfen. Maximal 11 Zeichen erlaubt");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('errors' => "Bitte die Menge prüfen. Maximal 11 Zeichen erlaubt");
 
             print json_encode($out);
             return;
         }
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Kunden-Nr fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Kunden-Nr fehlt!");
 
     print json_encode($out);
     return;
@@ -72,23 +72,23 @@ if (isset($_REQUEST["beleg_nr"])) {
     if ($beleg_nr != "null" && $beleg_nr != "") {
         if ((preg_match("/^[0-9\/]{1,45}?$/", trim($beleg_nr))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('errors' => "Bitte die Abrechnungsnr. prüfen.");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('errors' => "Bitte die Abrechnungsnr. prüfen.");
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('errors' => "Die Abrechnungsnr. fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('errors' => "Die Abrechnungsnr. fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Die Abrechnungsnr. fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Die Abrechnungsnr. fehlt!");
 
     print json_encode($out);
 
@@ -98,8 +98,8 @@ if (isset($_REQUEST["beleg_nr"])) {
 if (isset($_REQUEST["datum"])) {
     $datum = $_REQUEST["datum"];
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Datum fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Datum fehlt!");
 
     print json_encode($out);
 
@@ -110,24 +110,24 @@ if (isset($_REQUEST["kunden_name"])) {
     $name = $_REQUEST["kunden_name"];
     if ($name != "null" && $name != "") {
         if (strlen($name) > 64 || strlen($name) < 1) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('errors' => "Bitte einen Kunden-Namen mit max. 64 Zeichen eingeben.");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('errors' => "Bitte einen Kunden-Namen mit max. 64 Zeichen eingeben.");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('errors' => "Kunden-Name fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('errors' => "Kunden-Name fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Kunden-Name fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Kunden-Name fehlt!");
 
     print json_encode($out);
 
@@ -147,17 +147,17 @@ $rs = $dbSyb->Execute($sqlQuery);
 $value = array();
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => utf8_encode($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => utf8_encode($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
 }
-If (isset($rs->fields{'ergebnis'})) {
-    $ergebnis = $rs->fields{'ergebnis'};
+If (isset($rs->fields['ergebnis'])) {
+    $ergebnis = $rs->fields['ergebnis'];
 } else {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Keine Ergebnis-Rückmeldung erhalten! Evtl. war die Buchung nicht erfolgreich.</br>" . ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Keine Ergebnis-Rückmeldung erhalten! Evtl. war die Buchung nicht erfolgreich.</br>" . ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
@@ -170,7 +170,7 @@ if ($ergebnis > 0) {
 
     while (!$rs->EOF) {
 
-        $value{$i}{"ergebnis"} = $rs->fields{'ergebnis'};
+        $value{$i}['ergebnis'] = $rs->fields['ergebnis'];
 
         $i++;
 
@@ -180,14 +180,14 @@ if ($ergebnis > 0) {
 
     $rs->Close();
 
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $value;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $value;
 
     print json_encode($out);
 } else {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Es ist ein unbekannter Fehler aufgetreten! Vorgang wird abgebrochen</br>" . ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Es ist ein unbekannter Fehler aufgetreten! Vorgang wird abgebrochen</br>" . ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;

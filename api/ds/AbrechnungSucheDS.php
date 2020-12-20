@@ -64,8 +64,8 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login) {
         if ($kunden_nr != "null" && $kunden_nr != "") {
             if ((preg_match("/^[0-9]{1,11}?$/", trim($kunden_nr))) == 0) {
 
-                $out{'response'}{'status'} = -4;
-                $out{'response'}{'errors'} = array('verkauf_an' => "Bitte die Kunden-Nr prüfen");
+                $out['response']['status'] = -4;
+                $out['response']['errors'] = array('verkauf_an' => "Bitte die Kunden-Nr prüfen");
 
                 print json_encode($out);
                 return;
@@ -82,8 +82,8 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login) {
         $andProdKz = " and prod_kz = " . $dbSyb->Quote(utf8_decode($prod_kz));
         if ($prod_kz != "null" && $prod_kz != "") {
             if (strlen($prod_kz) != 4) {
-                $out{'response'}{'status'} = -1;
-                $out{'response'}{'errors'} = array('prod_kz' => "Bitte einen Produkt-Kürzel mit 4 Zeichen eingeben.");
+                $out['response']['status'] = -1;
+                $out['response']['errors'] = array('prod_kz' => "Bitte einen Produkt-Kürzel mit 4 Zeichen eingeben.");
 
                 print json_encode($out);
 
@@ -113,8 +113,8 @@ if (isset($_REQUEST["beleg_nr"])) {
     if ($beleg_nr != "null" && $beleg_nr != "") {
         if ((preg_match("/^[0-9\/]{1,45}?$/", trim($beleg_nr))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('beleg_nr' => "Bitte die Abrechnungsnr. prüfen.");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('beleg_nr' => "Bitte die Abrechnungsnr. prüfen.");
 
             print json_encode($out);
             return;
@@ -133,9 +133,9 @@ if (isset($_REQUEST["freieSuche"])) {
     $likeFreieSuche = " and beleg_nr like '%" . $freieSuche . "%'";
     if ((preg_match("/^[a-zA-Z0-9.\/]{1,60}?$/", trim($freieSuche))) == 0) {
 
-        $out{'response'}{'data'} = array();
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('freieSuche' => "Bitte die Eingaben überprüfen!");
+        $out['response']['data'] = array();
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('freieSuche' => "Bitte die Eingaben überprüfen!");
 
         print json_encode($out);
         return;
@@ -169,9 +169,9 @@ if (!$rs) {
 
     $out = array();
 
-    $out{'response'}{'data'} = $data;
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('freieSuche' => utf8_encode($dbSyb->ErrorMsg()));
+    $out['response']['data'] = $data;
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('freieSuche' => utf8_encode($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
@@ -181,12 +181,12 @@ $i = 0;
 
 while (!$rs->EOF) {
 
-    $data{$i}{"beleg_nr"} = $rs->fields{'beleg_nr'};
-	$data{$i}{"anzPos"} = $rs->fields{'anzPos'};
-	$data{$i}{"gesamtpr_brutto"} =  number_format($rs->fields{'gesamtpr_brutto'}, 2, ',', '.'); 
-	$data{$i}{"datum"} = $rs->fields{'datum'};
-	$data{$i}{"verkauf_an"} = $rs->fields{'verkauf_an'};
-	$data{$i}{"kunden_name"} = utf8_encode($rs->fields{'kunden_name'});
+    $data{$i}['beleg_nr'] = $rs->fields['beleg_nr'];
+	$data{$i}['anzPos'] = $rs->fields['anzPos'];
+	$data{$i}['gesamtpr_brutto'] =  number_format($rs->fields['gesamtpr_brutto'], 2, ',', '.'); 
+	$data{$i}['datum'] = $rs->fields['datum'];
+	$data{$i}['verkauf_an'] = $rs->fields['verkauf_an'];
+	$data{$i}['kunden_name'] = utf8_encode($rs->fields['kunden_name']);
 
     $i++;
     $rs->MoveNext();
@@ -194,9 +194,9 @@ while (!$rs->EOF) {
 
 $rs->Close();
 
-$out{'response'}{'data'} = $data;
-$out{'response'}{'status'} = 0;
-$out{'response'}{'errors'} = array();
+$out['response']['data'] = $data;
+$out['response']['status'] = 0;
+$out['response']['errors'] = array();
 
 print json_encode($out);
 

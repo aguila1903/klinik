@@ -19,15 +19,15 @@ $dbSyb->memCacheCompress = false; /// Use 'true' arbeitet unter Windows nicht
 $dbSyb->Connect('localhost', user, psw, db); //=>>> Verbindungsaufbau mit der DB
 
 function register($text, $ergebnis) {
-    $data{"text"} = $text;
-    $data{"ergebnis"} = $ergebnis;
+    $data['text'] = $text;
+    $data['ergebnis'] = $ergebnis;
     print(json_encode($data));
     die;
 }
 
 function errorMsg($errorMsg, $ergebnis) {
-    $data{"text"} = $errorMsg;
-    $data{"ergebnis"} = $ergebnis;
+    $data['text'] = $errorMsg;
+    $data['ergebnis'] = $ergebnis;
     print(json_encode($data));
     die;
 }
@@ -107,8 +107,8 @@ if (!$rs) {
 $i = 0;
 
 while (!$rs->EOF) { // =>>> End OF File
-    $ergebnis = $rs->fields{'ergebnis'};
-    $userID = $rs->fields{'userID'};
+    $ergebnis = $rs->fields['ergebnis'];
+    $userID = $rs->fields['userID'];
 
     $i++;
 

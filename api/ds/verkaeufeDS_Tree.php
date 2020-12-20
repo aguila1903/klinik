@@ -83,15 +83,15 @@ from
 
     while (!$rs->EOF) {
 
-        $value{$i}{"anzahl"} = $rs->fields{'anzPos'};
-        $value{$i}{"name"} = ($rs->fields{'name'});
-        $value{$i}{"verkauf_an"} = $rs->fields{'verkauf_an'};
-        $value{$i}{"beleg_nr"} = $rs->fields{'beleg_nr'};
-        $value{$i}{"datum"} = $rs->fields{'datum'};
-        $value{$i}{"startTime"} = substr($rs->fields{'startTime'}, 11, 5);
-        $value{$i}{"endTime"} = substr($rs->fields{'endTime'}, 11, 5);
-        $value{$i}{"zahlungsziel"} = $rs->fields{'zahlungsziel'};
-        $value{$i}{"geburtstag"} = $rs->fields{'geburtstag'};
+        $value{$i}['anzahl'] = $rs->fields['anzPos'];
+        $value{$i}['name'] = ($rs->fields['name']);
+        $value{$i}['verkauf_an'] = $rs->fields['verkauf_an'];
+        $value{$i}['beleg_nr'] = $rs->fields['beleg_nr'];
+        $value{$i}['datum'] = $rs->fields['datum'];
+        $value{$i}['startTime'] = substr($rs->fields['startTime'], 11, 5);
+        $value{$i}['endTime'] = substr($rs->fields['endTime'], 11, 5);
+        $value{$i}['zahlungsziel'] = $rs->fields['zahlungsziel'];
+        $value{$i}['geburtstag'] = $rs->fields['geburtstag'];
 
         $i++;
 

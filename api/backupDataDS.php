@@ -11,7 +11,7 @@ $out = array();
 
 while($i<count($backups)){    
     
-    $data{$ii}{"dateiname"} = utf8_encode($backups[$i]);
+    $data{$ii}['dateiname'] = utf8_encode($backups[$i]);
     $i++;
     $ii++;
 }

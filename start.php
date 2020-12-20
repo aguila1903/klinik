@@ -17,26 +17,26 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
             <TITLE>DOGAL TEDAVILER KLINIGI</TITLE>
             <link href="main.css" rel="stylesheet">
             <SCRIPT type="text/javascript">
-                  var isomorphicDir = "../include/isomorphic_tr/";</SCRIPT>
-            <SCRIPT type="text/javascript" SRC="../include/isomorphic_tr/system/modules/ISC_Core.js?locale=tr">
+                  var isomorphicDir = "../include/isomorphic/";</SCRIPT>
+            <SCRIPT type="text/javascript" SRC="../include/isomorphic/system/modules/ISC_Core.js?locale=tr">
             </SCRIPT>
-            <SCRIPT type="text/javascript" SRC="../include/isomorphic_tr/system/modules/ISC_Foundation.js?locale=tr">
+            <SCRIPT type="text/javascript" SRC="../include/isomorphic/system/modules/ISC_Foundation.js?locale=tr">
             </SCRIPT>
-            <SCRIPT type="text/javascript" SRC="../include/isomorphic_tr/system/modules/ISC_Containers.js?locale=tr">
+            <SCRIPT type="text/javascript" SRC="../include/isomorphic/system/modules/ISC_Containers.js?locale=tr">
             </SCRIPT>
-            <SCRIPT type="text/javascript" SRC="../include/isomorphic_tr/system/modules/ISC_Grids.js?locale=tr">
+            <SCRIPT type="text/javascript" SRC="../include/isomorphic/system/modules/ISC_Grids.js?locale=tr">
             </SCRIPT>
-            <SCRIPT type="text/javascript" SRC="../include/isomorphic_tr/system/modules/ISC_Forms.js?locale=tr">
+            <SCRIPT type="text/javascript" SRC="../include/isomorphic/system/modules/ISC_Forms.js?locale=tr">
             </SCRIPT>
-            <SCRIPT type="text/javascript" SRC="../include/isomorphic_tr/system/modules/ISC_DataBinding.js?locale=tr">
+            <SCRIPT type="text/javascript" SRC="../include/isomorphic/system/modules/ISC_DataBinding.js?locale=tr">
             </SCRIPT>
-            <SCRIPT type="text/javascript" SRC="../include/isomorphic_tr/system/modules/ISC_Calendar.js?locale=tr">
+            <SCRIPT type="text/javascript" SRC="../include/isomorphic/system/modules/ISC_Calendar.js?locale=tr">
             </SCRIPT>
-            <SCRIPT type="text/javascript" SRC="../include/isomorphic_tr/system/modules/ISC_RichTextEditor.js?locale=tr">
+            <SCRIPT type="text/javascript" SRC="../include/isomorphic/system/modules/ISC_RichTextEditor.js?locale=tr">
             </SCRIPT>
-            <SCRIPT type="text/javascript" SRC="../include/isomorphic_tr/skins/EnterpriseBlue/load_skin.js?locale=tr">
+            <SCRIPT type="text/javascript" SRC="../include/isomorphic/skins/Tahoe/load_skin.js?locale=tr">
             </SCRIPT>
-            <SCRIPT type="text/javascript" SRC="../include/isomorphic_tr/locales/frameworkMessages_tr_TR.properties">
+            <SCRIPT type="text/javascript" SRC="../include/isomorphic/locales/frameworkMessages_tr_TR.properties">
             </SCRIPT>
 <!--            <script src="js/amcharts.js" type="text/javascript"></script>-->
             <link rel='stylesheet' href='calendar/fullcalendar.css' />

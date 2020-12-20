@@ -37,8 +37,8 @@ $out = array();
 
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('name' => utf8_encode($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('name' => utf8_encode($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -52,21 +52,21 @@ if (isset($_REQUEST["beleg_nr"])) {
     if ($beleg_nr != "null" && $beleg_nr != "") {
         if ((preg_match("/^[0-9\/]{1,45}?$/", trim($beleg_nr))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('beleg_nr' => "Bitte die Abrechnungsnr. prüfen.");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('beleg_nr' => "Bitte die Abrechnungsnr. prüfen.");
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = 99;
-        $out{'response'}{'errors'} = array();
+        $out['response']['status'] = 99;
+        $out['response']['errors'] = array();
         print json_encode($out);
         return;
     }
 } else {
-    $out{'response'}{'status'} = 99;
-    $out{'response'}{'errors'} = array();
+    $out['response']['status'] = 99;
+    $out['response']['errors'] = array();
     print json_encode($out);
     return;
 }
@@ -87,8 +87,8 @@ $rs = $dbSyb->Execute($sqlQuery);
 $value = array();
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('beleg_nr' => utf8_encode($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('beleg_nr' => utf8_encode($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
@@ -97,13 +97,13 @@ if (!$rs) {
 
     while (!$rs->EOF) {
 
-    $value{"menge"} = $rs->fields{'menge'};
-    $value{"einzelpr_netto"} = number_format($rs->fields{'einzelpr_netto'}, 2, ',', '.');
-    $value{"mwst_einzelpr"} = number_format($rs->fields{'mwst_einzelpr'}, 4, ',', '.');
-    $value{"einzelpr_brutto"} = number_format($rs->fields{'einzelpr_brutto'}, 2, ',', '.');
-    $value{"gesamtpr_brutto"} = number_format($rs->fields{'gesamtpr_brutto'}, 2, ',', '.');
-    $value{"mwst_gesamtpr"} = number_format($rs->fields{'mwst_gesamtpr'}, 4, ',', '.');
-    $value{"gesamtpr_brutto"} = number_format($rs->fields{'gesamtpr_brutto'}, 2, ',', '.');
+    $value['menge'] = $rs->fields['menge'];
+    $value['einzelpr_netto'] = number_format($rs->fields['einzelpr_netto'], 2, ',', '.');
+    $value['mwst_einzelpr'] = number_format($rs->fields['mwst_einzelpr'], 4, ',', '.');
+    $value['einzelpr_brutto'] = number_format($rs->fields['einzelpr_brutto'], 2, ',', '.');
+    $value['gesamtpr_brutto'] = number_format($rs->fields['gesamtpr_brutto'], 2, ',', '.');
+    $value['mwst_gesamtpr'] = number_format($rs->fields['mwst_gesamtpr'], 4, ',', '.');
+    $value['gesamtpr_brutto'] = number_format($rs->fields['gesamtpr_brutto'], 2, ',', '.');
 
         $i++;
 
@@ -113,8 +113,8 @@ if (!$rs) {
 
     $rs->Close();
 
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $value;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $value;
 
     print json_encode($out);

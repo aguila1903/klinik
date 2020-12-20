@@ -37,8 +37,8 @@ $out = array();
 
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('name' => utf8_encode($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('name' => utf8_encode($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -52,16 +52,16 @@ if (isset($_REQUEST["kunden_nr"])) {
     if ($kunden_nr != "null" && $kunden_nr != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($kunden_nr))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('errors' => "Bitte die Menge prüfen. Maximal 11 Zeichen erlaubt");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('errors' => "Bitte die Menge prüfen. Maximal 11 Zeichen erlaubt");
 
             print json_encode($out);
             return;
         }
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Kunden-Nr fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Kunden-Nr fehlt!");
 
     print json_encode($out);
     return;
@@ -71,8 +71,8 @@ if (isset($_REQUEST["datum"])) {
     $datum = $_REQUEST["datum"];
     
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('datum' => "Datum fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('datum' => "Datum fehlt!");
 
     print json_encode($out);
 
@@ -88,8 +88,8 @@ $rs = $dbSyb->Execute($sqlQuery);
 $value = array();
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => utf8_encode($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => utf8_encode($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
@@ -98,8 +98,8 @@ if (!$rs) {
 
     while (!$rs->EOF) {
 
-        $value{"zahlfrist"} = $rs->fields{'zahlfrist'};
-        $value{"zahlDatum"} = $rs->fields{'zahlDatum'};
+        $value['zahlfrist'] = $rs->fields['zahlfrist'];
+        $value['zahlDatum'] = $rs->fields['zahlDatum'];
 
         $i++;
 
@@ -109,8 +109,8 @@ if (!$rs) {
 
     $rs->Close();
 
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $value;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $value;
 
     print json_encode($out);

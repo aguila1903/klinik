@@ -67,8 +67,8 @@ if (isset($_REQUEST["verkauf_an"])) {
         if ($kunden_nr != "null" && $kunden_nr != "") {
             if ((preg_match("/^[0-9]{1,11}?$/", trim($kunden_nr))) == 0) {
 
-                $out{'response'}{'status'} = -4;
-                $out{'response'}{'errors'} = array('verkauf_an' => "Bitte die Kunden-Nr prüfen");
+                $out['response']['status'] = -4;
+                $out['response']['errors'] = array('verkauf_an' => "Bitte die Kunden-Nr prüfen");
 
                 print json_encode($out);
                 return;
@@ -85,8 +85,8 @@ if (isset($_REQUEST["verkauf_an"])) {
         $andProdKz = " and v.prod_kz = " . $dbSyb->Quote(utf8_decode($prod_kz));
         if ($prod_kz != "null" && $prod_kz != "") {
             if (strlen($prod_kz) != 4) {
-                $out{'response'}{'status'} = -1;
-                $out{'response'}{'errors'} = array('prod_kz' => "Bitte einen Produkt-Kürzel mit 4 Zeichen eingeben.");
+                $out['response']['status'] = -1;
+                $out['response']['errors'] = array('prod_kz' => "Bitte einen Produkt-Kürzel mit 4 Zeichen eingeben.");
 
                 print json_encode($out);
 
@@ -116,8 +116,8 @@ if (isset($_REQUEST["beleg_nr"])) {
     if ($beleg_nr != "null" && $beleg_nr != "") {
         if ((preg_match("/^[0-9\/]{1,45}?$/", trim($beleg_nr))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('beleg_nr' => "Bitte die Abrechnungsnr. prüfen.");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('beleg_nr' => "Bitte die Abrechnungsnr. prüfen.");
 
             print json_encode($out);
             return;
@@ -167,9 +167,9 @@ if (!$rs) {
     //>> [1] Fehlermeldung: INSERT-Fehler
     $out = array();
 
-    $out{'response'}{'data'} = $data;
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('prod_kz' => utf8_encode($dbSyb->ErrorMsg()));
+    $out['response']['data'] = $data;
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('prod_kz' => utf8_encode($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
@@ -178,24 +178,24 @@ if (!$rs) {
 $i = 0;
 
 while (!$rs->EOF) {
-    if(isset($rs->fields{'produkt_bez'})){
-    $data{$i}{"produkt_bez"} = utf8_encode($rs->fields{'produkt_bez'});}
+    if(isset($rs->fields['produkt_bez'])){
+    $data{$i}['produkt_bez'] = utf8_encode($rs->fields['produkt_bez']);}
     
-    if(isset($rs->fields{'kunden_name'})){        
-    $data{$i}{"kunden_name"} = utf8_encode($rs->fields{'kunden_name'});}
+    if(isset($rs->fields['kunden_name'])){        
+    $data{$i}['kunden_name'] = utf8_encode($rs->fields['kunden_name']);}
     
-    if(isset($rs->fields{'prod_kz'})){        
-    $data{$i}{"prod_kz"} = utf8_encode($rs->fields{'prod_kz'});}
+    if(isset($rs->fields['prod_kz'])){        
+    $data{$i}['prod_kz'] = utf8_encode($rs->fields['prod_kz']);}
     
       
-    if(isset($rs->fields{'verkauf_an'})){
-    $data{$i}{"verkauf_an"} = $rs->fields{'verkauf_an'};}
+    if(isset($rs->fields['verkauf_an'])){
+    $data{$i}['verkauf_an'] = $rs->fields['verkauf_an'];}
     
-    if(isset($rs->fields{'datum'})){
-    $data{$i}{"datum"} = $rs->fields{'datum'};}
+    if(isset($rs->fields['datum'])){
+    $data{$i}['datum'] = $rs->fields['datum'];}
     
-    if(isset($rs->fields{'beleg_nr'})){
-    $data{$i}{"beleg_nr"} = $rs->fields{'beleg_nr'};}
+    if(isset($rs->fields['beleg_nr'])){
+    $data{$i}['beleg_nr'] = $rs->fields['beleg_nr'];}
      
     $i++;
     $rs->MoveNext();
@@ -203,9 +203,9 @@ while (!$rs->EOF) {
 
 $rs->Close();
 
-$out{'response'}{'data'} = $data;
-$out{'response'}{'status'} = 0;
-$out{'response'}{'errors'} = array();
+$out['response']['data'] = $data;
+$out['response']['status'] = 0;
+$out['response']['errors'] = array();
 
 print json_encode($out);
 

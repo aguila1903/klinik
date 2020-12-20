@@ -127,8 +127,8 @@ if (isset($_FILES['datei']) && (($_FILES["datei"]["type"] != "image/gif"
             $ergebnis = "";
 
             while (!$rs->EOF) {
-                $ergebnis = $rs->fields{'ergebnis'};
-                $historie = $rs->fields{'historie'};
+                $ergebnis = $rs->fields['ergebnis'];
+                $historie = $rs->fields['historie'];
 
                 $i++;
 
@@ -137,7 +137,7 @@ if (isset($_FILES['datei']) && (($_FILES["datei"]["type"] != "image/gif"
 
             $rs->Close();
             
-//            if(isset($rs->fields{'ergebnis'}) && isset($rs->fields{'historie'})){
+//            if(isset($rs->fields['ergebnis']) && isset($rs->fields['historie'])){
             if (($ergebnis == 1 && $historie == 1) || ($ergebnis == 0 && $historie == 1)) {
 
                 $result = json_encode(utf8_encode($bild_name) . ' erfolgreich hochgeladen!');

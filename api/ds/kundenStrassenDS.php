@@ -79,8 +79,8 @@ $value = array();
 
 while (!$rs->EOF) {
 
-    $value{$i}{"strasse"} = utf8_encode($rs->fields{'strasse'});
-    $value{$i}{"nr"} = $i;
+    $value{$i}['strasse'] = utf8_encode($rs->fields['strasse']);
+    $value{$i}['nr'] = $i;
 
     $i++;
 

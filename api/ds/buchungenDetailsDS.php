@@ -60,23 +60,23 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login) {
         if ($beleg_nr != "null" && $beleg_nr != "") {
             if ((preg_match("/^[0-9\/]{1,45}?$/", trim($beleg_nr))) == 0) {
 
-                $out{'response'}{'status'} = -4;
-                $out{'response'}{'errors'} = array('errors' => "Bitte die Abrechnungsnr. prüfen. " . $beleg_nr);
+                $out['response']['status'] = -4;
+                $out['response']['errors'] = array('errors' => "Bitte die Abrechnungsnr. prüfen. " . $beleg_nr);
 
                 print json_encode($out);
                 return;
             }
         } else {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('errors' => "Die Abrechnungsnr. fehlt!");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('errors' => "Die Abrechnungsnr. fehlt!");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('errors' => "Die Abrechnungsnr. fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('errors' => "Die Abrechnungsnr. fehlt!");
 
         print json_encode($out);
 
@@ -106,21 +106,21 @@ left join kunden k on v.verkauf_an = k.lfd_nr where v.beleg_nr = " . $dbSyb->Quo
 
     while (!$rs->EOF) {
 
-        $value{$i}{"lfd_nr"} = $rs->fields{'lfd_nr'};
-        $value{$i}{"prod_kz"} = ($rs->fields{'prod_kz'});
-        $value{$i}{"bezeichnung"} = ($rs->fields{'bezeichnung'});
-        $value{$i}{"menge"} = $rs->fields{'menge'};
-        $value{$i}{"preis_kat"} = $rs->fields{'preis_kat'};
-        if ($value{$i}{"preis_kat"} == "4") {
-            $value{$i}{"brutto_preis_"} = number_format($rs->fields{'brutto_preis'}, 2, ',', '.');
-            $value{$i}{"mwst_"} = number_format($rs->fields{'mwst'}, 2, ',', '.');
+        $value{$i}['lfd_nr'] = $rs->fields['lfd_nr'];
+        $value{$i}['prod_kz'] = ($rs->fields['prod_kz']);
+        $value{$i}['bezeichnung'] = ($rs->fields['bezeichnung']);
+        $value{$i}['menge'] = $rs->fields['menge'];
+        $value{$i}['preis_kat'] = $rs->fields['preis_kat'];
+        if ($value{$i}['preis_kat'] == "4") {
+            $value{$i}['brutto_preis_'] = number_format($rs->fields['brutto_preis'], 2, ',', '.');
+            $value{$i}['mwst_'] = number_format($rs->fields['mwst'], 2, ',', '.');
         } else {
-            $value{$i}{"brutto_preis_"} = "0,00";
-            $value{$i}{"mwst_"} = "0,00";
+            $value{$i}['brutto_preis_'] = "0,00";
+            $value{$i}['mwst_'] = "0,00";
         }
-        $value{$i}{"brutto_preis"} = number_format($rs->fields{'brutto_preis'}, 2, ',', '.');
-        $value{$i}{"mwst"} = number_format($rs->fields{'mwst'}, 0, ',', '.');
-        $value{$i}{"beleg_nr"} = $rs->fields{'beleg_nr'};
+        $value{$i}['brutto_preis'] = number_format($rs->fields['brutto_preis'], 2, ',', '.');
+        $value{$i}['mwst'] = number_format($rs->fields['mwst'], 0, ',', '.');
+        $value{$i}['beleg_nr'] = $rs->fields['beleg_nr'];
 
         $i++;
 

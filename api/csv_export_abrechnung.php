@@ -54,36 +54,36 @@ $data = array();
 
 
 while (!$rs->EOF) {
-    $mwst1 = 100 - $rs->fields{'mwst'};
-    $mwst2 = ($mwst1 * $rs->fields{'gesamtpr_brutto'}) / 100;
-    $mwst3 = $rs->fields{'gesamtpr_brutto'} - $mwst2;
+    $mwst1 = 100 - $rs->fields['mwst'];
+    $mwst2 = ($mwst1 * $rs->fields['gesamtpr_brutto']) / 100;
+    $mwst3 = $rs->fields['gesamtpr_brutto'] - $mwst2;
     $araToplam = number_format($mwst2, 2, ',', '.');
 
-//    $data{$i}{"lfd_nr"} = $rs->fields{'lfd_nr'};
-    $data{$i}{0} = trim($rs->fields{'prod_kz'});
-    $data{$i}{1} = trim($rs->fields{'bezeichnung'});
-    $data{$i}{2} = $rs->fields{'verkauf_an'};
-    $data{$i}{3} = trim($rs->fields{'name'});
-    $data{$i}{4} = $rs->fields{'geburtstag'};
-    $data{$i}{5} = $rs->fields{'menge'};
-    $data{$i}{6} = $rs->fields{'preis_kat'};
-    $data{$i}{7} = number_format($rs->fields{'mwst'}, 2, ',', '.');
-    $data{$i}{8} = number_format($rs->fields{'brutto_preis'}, 2, ',', '.');
+//    $data{$i}['lfd_nr'] = $rs->fields['lfd_nr'];
+    $data{$i}{0} = trim($rs->fields['prod_kz']);
+    $data{$i}{1} = trim($rs->fields['bezeichnung']);
+    $data{$i}{2} = $rs->fields['verkauf_an'];
+    $data{$i}{3} = trim($rs->fields['name']);
+    $data{$i}{4} = $rs->fields['geburtstag'];
+    $data{$i}{5} = $rs->fields['menge'];
+    $data{$i}{6} = $rs->fields['preis_kat'];
+    $data{$i}{7} = number_format($rs->fields['mwst'], 2, ',', '.');
+    $data{$i}{8} = number_format($rs->fields['brutto_preis'], 2, ',', '.');
     $data{$i}{9} = $araToplam;
     $data{$i}{10} = number_format($mwst3, 2, ',', '.');
-    $data{$i}{11} = number_format($rs->fields{'gesamtpr_brutto'}, 2, ',', '.');
-    $data{$i}{12} = $rs->fields{'datum'};
-    $data{$i}{13} = $rs->fields{'beleg_nr'};
-//    $data{$i}{"bemerkung"} = trim($rs->fields{'bemerkung'});
-//    $data{$i}{"beleg_pfad"} = trim($rs->fields{'beleg_pfad'});
+    $data{$i}{11} = number_format($rs->fields['gesamtpr_brutto'], 2, ',', '.');
+    $data{$i}{12} = $rs->fields['datum'];
+    $data{$i}{13} = $rs->fields['beleg_nr'];
+//    $data{$i}['bemerkung'] = trim($rs->fields['bemerkung']);
+//    $data{$i}['beleg_pfad'] = trim($rs->fields['beleg_pfad']);
 
 
 
-//    $export .= $data{$i}{"prod_kz"} . ";" . $data{$i}{"bezeichnung"} . ";"
-//            . $data{$i}{"verkauf_an"} . ";" . $data{$i}{"name"} . ";" . $data{$i}{"geburtstag"} . ";" . $data{$i}{"menge"} . ";"
-//            . $data{$i}{"preis_kat"} . ";" . $data{$i}{"mwst"} . ";" . $data{$i}{"brutto_preis"} . ";" . $araToplam
-//            . ";" . number_format($mwst3, 2, ',', '.') . ";" . $data{$i}{"gesamtpr_brutto"} . ";" . $data{$i}{"datum"} . ";"
-//            . $data{$i}{"beleg_nr"} . "\r\n";
+//    $export .= $data{$i}['prod_kz'] . ";" . $data{$i}['bezeichnung'] . ";"
+//            . $data{$i}['verkauf_an'] . ";" . $data{$i}['name'] . ";" . $data{$i}['geburtstag'] . ";" . $data{$i}['menge'] . ";"
+//            . $data{$i}['preis_kat'] . ";" . $data{$i}['mwst'] . ";" . $data{$i}['brutto_preis'] . ";" . $araToplam
+//            . ";" . number_format($mwst3, 2, ',', '.') . ";" . $data{$i}['gesamtpr_brutto'] . ";" . $data{$i}['datum'] . ";"
+//            . $data{$i}['beleg_nr'] . "\r\n";
 
     $i++;
 

@@ -69,7 +69,7 @@ $value = array();
 
 while (!$rs->EOF) {
 
-    $value{$i}{"beleg_nr"} = $rs->fields{'beleg_nr'};
+    $value{$i}['beleg_nr'] = $rs->fields['beleg_nr'];
        
     $i++;
 

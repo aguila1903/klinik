@@ -126,13 +126,13 @@ from
 
     while (!$rs->EOF) {
 
-        $value{$i}{"lfd_nr"} = $rs->fields{'lfd_nr'};
-        $value{$i}{"gesamtpr_brutto"} = number_format($rs->fields{'gesamtpr_brutto'}, 2, '.', '');
-        $value{$i}{"kunden_name"} = utf8_encode($rs->fields{'kunden_name'});
-        $value{$i}{"name_mit_kunden_nr"} = utf8_encode($rs->fields{'kunden_name'}) . " - Knd.-Nr.: " . $rs->fields{'kunden_nr'};
-        $value{$i}{"kunden_nr"} = $rs->fields{'kunden_nr'};
-        $value{$i}{"beleg_nr"} = $rs->fields{'beleg_nr'};
-        $value{$i}{"datum"} = $rs->fields{'datum'};
+        $value{$i}['lfd_nr'] = $rs->fields['lfd_nr'];
+        $value{$i}['gesamtpr_brutto'] = number_format($rs->fields['gesamtpr_brutto'], 2, '.', '');
+        $value{$i}['kunden_name'] = utf8_encode($rs->fields['kunden_name']);
+        $value{$i}['name_mit_kunden_nr'] = utf8_encode($rs->fields['kunden_name']) . " - Knd.-Nr.: " . $rs->fields['kunden_nr'];
+        $value{$i}['kunden_nr'] = $rs->fields['kunden_nr'];
+        $value{$i}['beleg_nr'] = $rs->fields['beleg_nr'];
+        $value{$i}['datum'] = $rs->fields['datum'];
 
         $i++;
 

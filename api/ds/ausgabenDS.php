@@ -215,17 +215,17 @@ left join ausgaben c on a.ausg_kz = c.ausg_kz" . $datum . " order by  a.datum, a
 
     while (!$rs->EOF) {
 
-        $value{$i}{"lfd_nr"} = $rs->fields{'lfd_nr'};
-        $value{$i}{"ausg_art_kz"} = utf8_encode($rs->fields{'ausg_art_kz'});
-        $value{$i}{"ausg_art_bez"} = utf8_encode($rs->fields{'ausg_art_bez'});
-        $value{$i}{"ausg_kz"} = utf8_encode($rs->fields{'ausg_kz'});
-        $value{$i}{"ausg_bez"} = utf8_encode($rs->fields{'ausg_bez'});
-        $value{$i}{"betrag_netto"} = number_format($rs->fields{'betrag_netto'}, 2, '.', '');
-        $value{$i}{"betrag_brutto"} = number_format($rs->fields{'betrag_brutto'}, 2, '.', '');
-        $value{$i}{"mwst"} = number_format($rs->fields{'mwst'}, 4, '.', '');
-        $value{$i}{"mwst_satz"} = number_format($rs->fields{'mwst_satz'}, 2, '.', '');
-        $value{$i}{"datum"} = $rs->fields{'datum'};
-        $value{$i}{"beleg"} = utf8_encode($rs->fields{'beleg'});
+        $value{$i}['lfd_nr'] = $rs->fields['lfd_nr'];
+        $value{$i}['ausg_art_kz'] = utf8_encode($rs->fields['ausg_art_kz']);
+        $value{$i}['ausg_art_bez'] = utf8_encode($rs->fields['ausg_art_bez']);
+        $value{$i}['ausg_kz'] = utf8_encode($rs->fields['ausg_kz']);
+        $value{$i}['ausg_bez'] = utf8_encode($rs->fields['ausg_bez']);
+        $value{$i}['betrag_netto'] = number_format($rs->fields['betrag_netto'], 2, '.', '');
+        $value{$i}['betrag_brutto'] = number_format($rs->fields['betrag_brutto'], 2, '.', '');
+        $value{$i}['mwst'] = number_format($rs->fields['mwst'], 4, '.', '');
+        $value{$i}['mwst_satz'] = number_format($rs->fields['mwst_satz'], 2, '.', '');
+        $value{$i}['datum'] = $rs->fields['datum'];
+        $value{$i}['beleg'] = utf8_encode($rs->fields['beleg']);
 
         $i++;
 

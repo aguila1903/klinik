@@ -60,23 +60,23 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login) {
         if ($lfd_nr != "null" && $lfd_nr != "") {
             if ((preg_match("/^[0-9]{1,11}?$/", trim($lfd_nr))) == 0) {
 
-                $out{'response'}{'status'} = -4;
-                $out{'response'}{'errors'} = array('errors' => "Bitte die Abrechnungsnr. prüfen. " . $lfd_nr);
+                $out['response']['status'] = -4;
+                $out['response']['errors'] = array('errors' => "Bitte die Abrechnungsnr. prüfen. " . $lfd_nr);
 
                 print json_encode($out);
                 return;
             }
         } else {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('errors' => "Die Abrechnungsnr. fehlt!");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('errors' => "Die Abrechnungsnr. fehlt!");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('errors' => "Die Abrechnungsnr. fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('errors' => "Die Abrechnungsnr. fehlt!");
 
         print json_encode($out);
 
@@ -99,10 +99,10 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login) {
 
     while (!$rs->EOF) {
 
-        $value{$i}{"lfd_nr"} = $rs->fields{'lfd_nr'};
-        $value{$i}{"attach_id"} = $rs->fields{'attach_id'};
-        $value{$i}{"bezeichnung"} = ($rs->fields{'bezeichnung'});
-        $value{$i}{"beleg_pfad"} = ($rs->fields{'bezeichnung'});
+        $value{$i}['lfd_nr'] = $rs->fields['lfd_nr'];
+        $value{$i}['attach_id'] = $rs->fields['attach_id'];
+        $value{$i}['bezeichnung'] = ($rs->fields['bezeichnung']);
+        $value{$i}['beleg_pfad'] = ($rs->fields['bezeichnung']);
 
         $i++;
 

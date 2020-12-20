@@ -37,8 +37,8 @@ $out = array();
 
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('name' => utf8_encode($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('name' => utf8_encode($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -52,24 +52,24 @@ if (isset($_REQUEST["prod_kz"])) {
     $prod_kz = $_REQUEST["prod_kz"];
     if ($prod_kz != "null" && $prod_kz != "") {
         if (strlen($prod_kz) != 4) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('prod_kz' => "Bitte einen Produkt-Kürzel mit 4 Zeichen eingeben.");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('prod_kz' => "Bitte einen Produkt-Kürzel mit 4 Zeichen eingeben.");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('prod_kz' => "Produkt-Kürzel fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('prod_kz' => "Produkt-Kürzel fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('prod_kz' => "Produkt-Kürzel fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('prod_kz' => "Produkt-Kürzel fehlt!");
     print json_encode($out);
     return;
 }
@@ -78,24 +78,24 @@ if (isset($_REQUEST["bezeichnung"])) {
     $bezeichnung = $_REQUEST["bezeichnung"];
     if ($bezeichnung != "null" && $bezeichnung != "") {
         if (strlen($bezeichnung) > 250 || strlen($bezeichnung) < 1) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('bezeichnung' => "Bitte eine Produkt-Bezeichnugn mit max. 250 Zeichen eingeben.");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('bezeichnung' => "Bitte eine Produkt-Bezeichnugn mit max. 250 Zeichen eingeben.");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('bezeichnung' => "Bezeichnug fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('bezeichnung' => "Bezeichnug fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('bezeichnung' => "Bezeichnug fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('bezeichnung' => "Bezeichnug fehlt!");
 
     print json_encode($out);
 
@@ -109,23 +109,23 @@ if (isset($_REQUEST["brutto_preis1"])) {
     if ($brutto_preis1 != "null" && $brutto_preis1 != "") {
         if ((preg_match("/^[0-9,]{1,10}?$/", trim($brutto_preis1))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('brutto_preis1' => "Bitte den Netto-Preis 1 prüfen.");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('brutto_preis1' => "Bitte den Netto-Preis 1 prüfen.");
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('brutto_preis1' => "Der Netto-Preis 1 fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('brutto_preis1' => "Der Netto-Preis 1 fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('brutto_preis1' => "Die Netto-Preis 1 fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('brutto_preis1' => "Die Netto-Preis 1 fehlt!");
 
     print json_encode($out);
 
@@ -137,23 +137,23 @@ if (isset($_REQUEST["brutto_preis2"])) {
     if ($brutto_preis1 != "null" && $brutto_preis2 != "") {
         if ((preg_match("/^[0-9,]{1,10}?$/", trim($brutto_preis2))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('brutto_preis2' => "Bitte den Netto-Preis 2 prüfen.");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('brutto_preis2' => "Bitte den Netto-Preis 2 prüfen.");
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('brutto_preis2' => "Der Netto-Preis 2 fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('brutto_preis2' => "Der Netto-Preis 2 fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('brutto_preis2' => "Die Netto-Preis 2 fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('brutto_preis2' => "Die Netto-Preis 2 fehlt!");
 
     print json_encode($out);
 
@@ -165,23 +165,23 @@ if (isset($_REQUEST["mwst"])) {
     if ($mwst != "null" && $mwst != "") {
         if ((preg_match("/^[0-9.,]{1,6}?$/", trim($mwst))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('mwst' => "Bitte die MwSt prüfen");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('mwst' => "Bitte die MwSt prüfen");
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('mwst' => "Die MwSt fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('mwst' => "Die MwSt fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('mwst' => "Die MwSt fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('mwst' => "Die MwSt fehlt!");
 
     print json_encode($out);
 
@@ -206,49 +206,49 @@ $rs = $dbSyb->Execute($sqlQuery);
 $value = array();
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('prod_kz' => utf8_encode($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('prod_kz' => utf8_encode($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
 }
 
 
-If (isset($rs->fields{'ergebnis'})) {
-    $ergebnis = $rs->fields{'ergebnis'};
+If (isset($rs->fields['ergebnis'])) {
+    $ergebnis = $rs->fields['ergebnis'];
 } else {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('prod_kz' => "Keine Ergebnis-Rückmeldung erhalten! Evtl. war der Speichervorgang nicht erfolgreich.</br>" . utf8_encode($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('prod_kz' => "Keine Ergebnis-Rückmeldung erhalten! Evtl. war der Speichervorgang nicht erfolgreich.</br>" . utf8_encode($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
 }
 
 if ($ergebnis == -99) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('prod_kz' => "Dieses Produkt-Kürzel existiert bereits. Bitte verwenden Sie ein anderes 4 stelliges Produkt-Kürzel");
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('prod_kz' => "Dieses Produkt-Kürzel existiert bereits. Bitte verwenden Sie ein anderes 4 stelliges Produkt-Kürzel");
 
     print json_encode($out);
     return;
 } /*elseif ($ergebnis == -98) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('prod_kz' => "Dieses Produkt-Kürzel wurde bereits verwendet, da es einen Eintrag in der Historie hat. Bitte verwenden Sie ein anderes 4 stelliges Produkt-Kürzel");
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('prod_kz' => "Dieses Produkt-Kürzel wurde bereits verwendet, da es einen Eintrag in der Historie hat. Bitte verwenden Sie ein anderes 4 stelliges Produkt-Kürzel");
 
     print json_encode($out);
     return;
 }*/ elseif ($ergebnis == 1) {
 
-    If (isset($rs->fields{'historie'})) {
-        if ($rs->fields{'historie'} < 1) {
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('prod_kz' => "Es gab ein Problem beim Schreiben der Historie!</br>Vorgang wurde abgrebrochen</br>" . utf8_encode($dbSyb->ErrorMsg()));
+    If (isset($rs->fields['historie'])) {
+        if ($rs->fields['historie'] < 1) {
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('prod_kz' => "Es gab ein Problem beim Schreiben der Historie!</br>Vorgang wurde abgrebrochen</br>" . utf8_encode($dbSyb->ErrorMsg()));
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('prod_kz' => "Keine Historie-Rückmeldung erhalten! Evtl. wurden die Änderungen nicht protokolliert. </br>" . utf8_encode($dbSyb->ErrorMsg()));
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('prod_kz' => "Keine Historie-Rückmeldung erhalten! Evtl. wurden die Änderungen nicht protokolliert. </br>" . utf8_encode($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;
@@ -259,7 +259,7 @@ if ($ergebnis == -99) {
 
     while (!$rs->EOF) {
 
-        $value{$i}{"ergebnis"} = $rs->fields{'ergebnis'};
+        $value{$i}['ergebnis'] = $rs->fields['ergebnis'];
 
         $i++;
 
@@ -269,15 +269,15 @@ if ($ergebnis == -99) {
 
     $rs->Close();
 
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $value;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $value;
 
     print json_encode($out);
 } 
 else {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('prod_kz' => "Es ist ein unbekannter Fehler aufgetreten! Vorgang wird abgebrochen</br>" . utf8_encode($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('prod_kz' => "Es ist ein unbekannter Fehler aufgetreten! Vorgang wird abgebrochen</br>" . utf8_encode($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;

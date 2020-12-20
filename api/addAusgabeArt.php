@@ -37,8 +37,8 @@ $out = array();
 
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('name' => utf8_encode($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('name' => utf8_encode($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -52,24 +52,24 @@ if (isset($_REQUEST["bezeichnung"])) {
     $bezeichnung = $_REQUEST["bezeichnung"];
     if ($bezeichnung != "null" && $bezeichnung != "") {
         if (strlen($bezeichnung) > 64 || strlen($bezeichnung) < 1) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('bezeichnung' => "Bitte eine Bezeichnung mit max. 64 Zeichen eingeben.");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('bezeichnung' => "Bitte eine Bezeichnung mit max. 64 Zeichen eingeben.");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('bezeichnung' => "Bezeichnung fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('bezeichnung' => "Bezeichnung fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('bezeichnung' => "Bezeichnung fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('bezeichnung' => "Bezeichnung fehlt!");
 
     print json_encode($out);
 
@@ -81,24 +81,24 @@ if (isset($_REQUEST["ausg_art_kz"])) {
     $ausg_art_kz = $_REQUEST["ausg_art_kz"];
     if ($ausg_art_kz != "null" && $ausg_art_kz != "") {
         if ((preg_match("/^[0-9a-zA-Z]{4}?$/", trim($ausg_art_kz))) == 0) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('ausg_art_kz' => "Bitte eine Ausgabe-Art entspricht nicht den Kriterien");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('ausg_art_kz' => "Bitte eine Ausgabe-Art entspricht nicht den Kriterien");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('ausg_art_kz' => "Ausgabe-Art fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('ausg_art_kz' => "Ausgabe-Art fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('ausg_art_kz' => "Ausgabe-Art fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('ausg_art_kz' => "Ausgabe-Art fehlt!");
 
     print json_encode($out);
     return;
@@ -117,24 +117,24 @@ $rs = $dbSyb->Execute($sqlQuery);
 $value = array();
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('ausg_art_kz' => utf8_encode($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('ausg_art_kz' => utf8_encode($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
 }
 
-If (isset($rs->fields{'ergebnis'})) {
-    if ($rs->fields{'ergebnis'} != 1 && $rs->fields{'ergebnis'} != 0) {
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('ausg_art_kz' => "Es gab ein Problem beim Speichern in die Datenbank! </br>" . utf8_encode($dbSyb->ErrorMsg()));
+If (isset($rs->fields['ergebnis'])) {
+    if ($rs->fields['ergebnis'] != 1 && $rs->fields['ergebnis'] != 0) {
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('ausg_art_kz' => "Es gab ein Problem beim Speichern in die Datenbank! </br>" . utf8_encode($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;
     }
 } else {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('ausg_art_kz' => "Keine Ergebnis-Rückmeldung erhalten </br>" . utf8_encode($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('ausg_art_kz' => "Keine Ergebnis-Rückmeldung erhalten </br>" . utf8_encode($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
@@ -145,7 +145,7 @@ $i = 0;
 
 while (!$rs->EOF) {
 
-    $value{$i}{"ergebnis"} = $rs->fields{'ergebnis'};
+    $value{$i}['ergebnis'] = $rs->fields['ergebnis'];
 
     $i++;
 
@@ -155,9 +155,9 @@ while (!$rs->EOF) {
 
 $rs->Close();
 
-$out{'response'}{'status'} = 0;
-$out{'response'}{'errors'} = array();
-$out{'response'}{'data'} = $value;
+$out['response']['status'] = 0;
+$out['response']['errors'] = array();
+$out['response']['data'] = $value;
 
 print json_encode($out);
 

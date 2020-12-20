@@ -37,8 +37,8 @@ $out = array();
 
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => utf8_encode($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => utf8_encode($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -51,8 +51,8 @@ $dbSyb->debug = false;
 if (isset($_REQUEST["lfd_nr"])) {
     $lfd_nr = $_REQUEST["lfd_nr"];
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Laufende-Nr fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Laufende-Nr fehlt!");
 
     print json_encode($out);
     return;
@@ -62,8 +62,8 @@ if (isset($_REQUEST["beleg"])) {
     $name = $_REQUEST["beleg"];
     if ($name != "null" && $name != "") {
         if (strlen($name) > 200 || strlen($name) < 1) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('errors' => "Bitte einen Beleg-Namen mit max. 200 Zeichen eingeben.");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('errors' => "Bitte einen Beleg-Namen mit max. 200 Zeichen eingeben.");
 
             print json_encode($out);
 
@@ -89,35 +89,35 @@ $value = array();
 
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => utf8_encode($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => utf8_encode($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
 }
-if (isset($rs->fields{'ergebnis'})) {
-    $ergebnis = $rs->fields{'ergebnis'};
+if (isset($rs->fields['ergebnis'])) {
+    $ergebnis = $rs->fields['ergebnis'];
     if ($ergebnis != 1) {
 
         if ($ergebnis == 0) {
-            $out{'response'}{'data'} = $ergebnis;
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('errors' => "Es wurde kein Datensatz gelöscht. </br>" . utf8_encode($dbSyb->ErrorMsg()));
+            $out['response']['data'] = $ergebnis;
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('errors' => "Es wurde kein Datensatz gelöscht. </br>" . utf8_encode($dbSyb->ErrorMsg()));
 
             print json_encode($out);
             return;
         } else {
-            $out{'response'}{'data'} = $ergebnis;
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('errors' => "Es gab ein Problem beim Löschen aus der Datenbank! </br>" . utf8_encode($dbSyb->ErrorMsg()));
+            $out['response']['data'] = $ergebnis;
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('errors' => "Es gab ein Problem beim Löschen aus der Datenbank! </br>" . utf8_encode($dbSyb->ErrorMsg()));
 
             print json_encode($out);
             return;
         }
     }
 } else {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Keine Ergebnis-Rückmeldung erhalten! Löschvorgang evtl. nicht erfolgreich. </br>" . utf8_encode($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Keine Ergebnis-Rückmeldung erhalten! Löschvorgang evtl. nicht erfolgreich. </br>" . utf8_encode($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
@@ -125,7 +125,7 @@ if (isset($rs->fields{'ergebnis'})) {
 
 while (!$rs->EOF) {
 
-    $value{"ergebnis"} = $rs->fields{'ergebnis'};
+    $value['ergebnis'] = $rs->fields['ergebnis'];
 
 
     // den n�chsten Datensatz lesen
@@ -139,9 +139,9 @@ unlink(getcwd() . "\Ausgaben\\" .utf8_decode($name));
 }
 
 
-$out{'response'}{'status'} = 0;
-$out{'response'}{'errors'} = array();
-$out{'response'}{'data'} = $value;
+$out['response']['status'] = 0;
+$out['response']['errors'] = array();
+$out['response']['data'] = $value;
 
 print json_encode($out);
 

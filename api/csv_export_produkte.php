@@ -28,8 +28,8 @@ $data = array();
 
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('name' => trim($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('name' => trim($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -70,16 +70,16 @@ if (!$rs) {
 $i = 0;
 
 while (!$rs->EOF) { // =>>> End OF File
-    $data{$i}{0} = trim($rs->fields{'prod_kz'});
-//    $data{$i}{1} = $rs->fields{'status'};
-    $data{$i}{1} = trim($rs->fields{'bezeichnung'});
-    $data{$i}{2} = number_format($rs->fields{'brutto_preis1'},2, ',', '.');
-    $data{$i}{3} = number_format($rs->fields{'brutto_preis2'},2, ',', '.');
-    $data{$i}{4} = number_format($rs->fields{'mwst'},2, ',', '.');
+    $data{$i}{0} = trim($rs->fields['prod_kz']);
+//    $data{$i}{1} = $rs->fields['status'];
+    $data{$i}{1} = trim($rs->fields['bezeichnung']);
+    $data{$i}{2} = number_format($rs->fields['brutto_preis1'],2, ',', '.');
+    $data{$i}{3} = number_format($rs->fields['brutto_preis2'],2, ',', '.');
+    $data{$i}{4} = number_format($rs->fields['mwst'],2, ',', '.');
 
 //
-//    $export .= $data{$i}{"prod_kz"} . ";" . $data{$i}{"bezeichnung"} . ";" . $data{$i}{"brutto_preis1"} . ";" 
-//            . $data{$i}{"brutto_preis2"} . ";" . $data{$i}{"mwst"} . "\r\n";
+//    $export .= $data{$i}['prod_kz'] . ";" . $data{$i}['bezeichnung'] . ";" . $data{$i}['brutto_preis1'] . ";" 
+//            . $data{$i}['brutto_preis2'] . ";" . $data{$i}['mwst'] . "\r\n";
 
 
     $i++;

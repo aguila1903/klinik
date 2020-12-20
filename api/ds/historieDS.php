@@ -111,19 +111,19 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login && $_SESSION["admin
     while (!$rs->EOF) {
 
 
-        $value{$i}{"name"} = trim($rs->fields{'name'});
-        $value{$i}{"schluessel"} = $rs->fields{'schluessel'};
-        $value{$i}{"lfn"} = $rs->fields{'lfn'};
-        $value{$i}{"user"} = trim($rs->fields{'user'});
-        $value{$i}{"aenderdat"} = $rs->fields{'aenderdat'};
-        $value{$i}{"a_inhalt"} = trim($rs->fields{'a_inhalt'});
-        $value{$i}{"n_inhalt"} = trim($rs->fields{'n_inhalt'});
-        $value{$i}{"feld"} = trim($rs->fields{'feld'});
-        $value{$i}{"codetext"} = trim($rs->fields{'codetext'});
+        $value{$i}['name'] = trim($rs->fields['name']);
+        $value{$i}['schluessel'] = $rs->fields['schluessel'];
+        $value{$i}['lfn'] = $rs->fields['lfn'];
+        $value{$i}['user'] = trim($rs->fields['user']);
+        $value{$i}['aenderdat'] = $rs->fields['aenderdat'];
+        $value{$i}['a_inhalt'] = trim($rs->fields['a_inhalt']);
+        $value{$i}['n_inhalt'] = trim($rs->fields['n_inhalt']);
+        $value{$i}['feld'] = trim($rs->fields['feld']);
+        $value{$i}['codetext'] = trim($rs->fields['codetext']);
 
-//    if ($value{$i}{"aktiv"} == 0) {
+//    if ($value{$i}['aktiv'] == 0) {
 //        $id = 0; 
-//        $value{$i}{"_hilite"} = $id;
+//        $value{$i}['_hilite'] = $id;
 //    }
 
         $i++;

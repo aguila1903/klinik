@@ -160,8 +160,8 @@ $Where1
 
     while (!$rs->EOF) {
 
-        $value{$i}{"monat"} = $rs->fields{'monat'};
-        $value{$i}{"monatsname"} = $rs->fields{'monatsname'};
+        $value{$i}['monat'] = $rs->fields['monat'];
+        $value{$i}['monatsname'] = $rs->fields['monatsname'];
 
         $i++;
         $rs->MoveNext();

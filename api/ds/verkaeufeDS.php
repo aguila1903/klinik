@@ -59,23 +59,23 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login) {
         if ($beleg_nr != "null" && $beleg_nr != "") {
             if ((preg_match("/^[0-9\/]{1,45}?$/", trim($beleg_nr))) == 0) {
 
-                $out{'response'}{'status'} = -4;
-                $out{'response'}{'errors'} = array('beleg_nr' => "Bitte die Abrechnungsnr. prüfen.");
+                $out['response']['status'] = -4;
+                $out['response']['errors'] = array('beleg_nr' => "Bitte die Abrechnungsnr. prüfen.");
 
                 print json_encode($out);
                 return;
             }
         } else {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('beleg_nr' => "Die Abrechnungsnr. fehlt!");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('beleg_nr' => "Die Abrechnungsnr. fehlt!");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('beleg_nr' => "Die Abrechnungsnr. fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('beleg_nr' => "Die Abrechnungsnr. fehlt!");
 
         print json_encode($out);
 
@@ -99,36 +99,36 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login) {
 
     while (!$rs->EOF) {
 
-        $value{$i}{"lfd_nr"} = $rs->fields{'lfd_nr'};
-        $value{$i}{"prod_kz"} = trim($rs->fields{'prod_kz'});
-        $value{$i}{"bezeichnung"} = trim($rs->fields{'bezeichnung'});
-        $value{$i}{"bemerkung"} = trim($rs->fields{'bemerkung'});
-        $value{$i}{"name"} = trim($rs->fields{'name'});
-        $value{$i}{"verkauf_an"} = $rs->fields{'verkauf_an'};
-        $value{$i}{"menge"} = $rs->fields{'menge'};
-        $value{$i}{"preis_kat"} = $rs->fields{'preis_kat'};
-//    $value{$i}{"brutto_preis"} = number_format($rs->fields{'brutto_preis'}, 2, '.', '');
-        $value{$i}{"mwst"} = number_format($rs->fields{'mwst'}, 2, '.', '');
-//    $value{$i}{"mwst_einzelpr"} =  number_format($rs->fields{'mwst_einzelpr'}, 4, '.', '');    
-        $value{$i}{"brutto_preis"} = number_format($rs->fields{'brutto_preis'}, 2, '.', '');
-        $value{$i}{"gesamtpr_brutto"} = number_format($rs->fields{'gesamtpr_brutto'}, 2, '.', '');
-        $mwst1 = 100 - $rs->fields{'mwst'};
-        $mwst2 = ($mwst1 * $rs->fields{'gesamtpr_brutto'}) / 100;
-        $mwst3 = $rs->fields{'gesamtpr_brutto'} - $mwst2;
-        $value{$i}{"mwst_gesamtpr"} = number_format($mwst3, 4, '.', '');
-        $value{$i}{"datum"} = $rs->fields{'datum'};
-        $value{$i}{"beleg_nr"} = $rs->fields{'beleg_nr'};
-        $value{$i}{"startTime"} = substr($rs->fields{'startTime'}, 11, 5);
-        $value{$i}{"endTime"} = substr($rs->fields{'endTime'}, 11, 5);
-        $value{$i}{"zahlungsziel"} = trim($rs->fields{'zahlungsziel'});
-        $value{$i}{"beleg_pfad"} = trim($rs->fields{'beleg_pfad'});
+        $value{$i}['lfd_nr'] = $rs->fields['lfd_nr'];
+        $value{$i}['prod_kz'] = trim($rs->fields['prod_kz']);
+        $value{$i}['bezeichnung'] = trim($rs->fields['bezeichnung']);
+        $value{$i}['bemerkung'] = trim($rs->fields['bemerkung']);
+        $value{$i}['name'] = trim($rs->fields['name']);
+        $value{$i}['verkauf_an'] = $rs->fields['verkauf_an'];
+        $value{$i}['menge'] = $rs->fields['menge'];
+        $value{$i}['preis_kat'] = $rs->fields['preis_kat'];
+//    $value{$i}['brutto_preis'] = number_format($rs->fields['brutto_preis'], 2, '.', '');
+        $value{$i}['mwst'] = number_format($rs->fields['mwst'], 2, '.', '');
+//    $value{$i}['mwst_einzelpr'] =  number_format($rs->fields['mwst_einzelpr'], 4, '.', '');    
+        $value{$i}['brutto_preis'] = number_format($rs->fields['brutto_preis'], 2, '.', '');
+        $value{$i}['gesamtpr_brutto'] = number_format($rs->fields['gesamtpr_brutto'], 2, '.', '');
+        $mwst1 = 100 - $rs->fields['mwst'];
+        $mwst2 = ($mwst1 * $rs->fields['gesamtpr_brutto']) / 100;
+        $mwst3 = $rs->fields['gesamtpr_brutto'] - $mwst2;
+        $value{$i}['mwst_gesamtpr'] = number_format($mwst3, 4, '.', '');
+        $value{$i}['datum'] = $rs->fields['datum'];
+        $value{$i}['beleg_nr'] = $rs->fields['beleg_nr'];
+        $value{$i}['startTime'] = substr($rs->fields['startTime'], 11, 5);
+        $value{$i}['endTime'] = substr($rs->fields['endTime'], 11, 5);
+        $value{$i}['zahlungsziel'] = trim($rs->fields['zahlungsziel']);
+        $value{$i}['beleg_pfad'] = trim($rs->fields['beleg_pfad']);
 
-        if ($value{$i}{"preis_kat"} == "4") {
-            $value{$i}{"brutto_preis_"} = number_format($rs->fields{'brutto_preis'}, 2, ',', '.');
-            $value{$i}{"mwst_"} = number_format($rs->fields{'mwst'}, 2, ',', '.');
+        if ($value{$i}['preis_kat'] == "4") {
+            $value{$i}['brutto_preis_'] = number_format($rs->fields['brutto_preis'], 2, ',', '.');
+            $value{$i}['mwst_'] = number_format($rs->fields['mwst'], 2, ',', '.');
         } else {
-            $value{$i}{"brutto_preis_"} = "0,00";
-            $value{$i}{"mwst_"} = "0,00";
+            $value{$i}['brutto_preis_'] = "0,00";
+            $value{$i}['mwst_'] = "0,00";
         }
 
         $i++;

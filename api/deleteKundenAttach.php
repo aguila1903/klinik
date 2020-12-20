@@ -37,8 +37,8 @@ $out = array();
 
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => utf8_encode($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => utf8_encode($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -51,8 +51,8 @@ $dbSyb->debug = false;
 if (isset($_REQUEST["attach_id"])) {
     $attach_id = $_REQUEST["attach_id"];
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Kunden-Nr fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Kunden-Nr fehlt!");
 
     print json_encode($out);
     return;
@@ -62,24 +62,24 @@ if (isset($_REQUEST["bezeichnung"])) {
     $bezeichnung = $_REQUEST["bezeichnung"];
     if ($bezeichnung != "null" && $bezeichnung != "") {
         if (strlen($bezeichnung) > 64 || strlen($bezeichnung) < 1) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('bezeichnung' => "Soyisim en az 64 harf'den olusmali");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('bezeichnung' => "Soyisim en az 64 harf'den olusmali");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('bezeichnung' => "Soyisim eksik");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('bezeichnung' => "Soyisim eksik");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('bezeichnung' => "Soyisim eksik");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('bezeichnung' => "Soyisim eksik");
 
     print json_encode($out);
 
@@ -99,48 +99,48 @@ $rs = $dbSyb->Execute($sqlQuery);
 $value = array();
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => utf8_encode($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => utf8_encode($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
 }
 
-If (isset($rs->fields{'ergebnis'}) && $rs->fields{'ergebnis'} != -99) {
-    if ($rs->fields{'ergebnis'} != 1 && $rs->fields{'ergebnis'} != 0) {
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('errors' => "Es gab ein Problem beim Löschen aus der Datenbank! </br>" . utf8_encode($dbSyb->ErrorMsg()));
+If (isset($rs->fields['ergebnis']) && $rs->fields['ergebnis'] != -99) {
+    if ($rs->fields['ergebnis'] != 1 && $rs->fields['ergebnis'] != 0) {
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('errors' => "Es gab ein Problem beim Löschen aus der Datenbank! </br>" . utf8_encode($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;
     }
 } else {
-    if (isset($rs->fields{'ergebnis'}) && $rs->fields{'ergebnis'} == -99) {
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('errors' => "Sie versuchen einen Kunden zulöschen, welcher in Geschäftsvorfälle eingebunden ist. Dies ist nicht möglich. Bitte setzen Sie den Kunden auf inaktiv. Vorgang wird abgebrochen. </br>" . utf8_encode($dbSyb->ErrorMsg()));
+    if (isset($rs->fields['ergebnis']) && $rs->fields['ergebnis'] == -99) {
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('errors' => "Sie versuchen einen Kunden zulöschen, welcher in Geschäftsvorfälle eingebunden ist. Dies ist nicht möglich. Bitte setzen Sie den Kunden auf inaktiv. Vorgang wird abgebrochen. </br>" . utf8_encode($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;
     } else {
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('errors' => "Keine Ergebnis-Rückmeldung erhalten! Löschvorgang evtl. nicht erfolgreich. </br>" . utf8_encode($dbSyb->ErrorMsg()));
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('errors' => "Keine Ergebnis-Rückmeldung erhalten! Löschvorgang evtl. nicht erfolgreich. </br>" . utf8_encode($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;
     }
 }
 
-If (isset($rs->fields{'historie'})) {
-    if ($rs->fields{'historie'} < 1) {
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('errors' => "Es gab ein Problem beim Schreiben der Historie!</br>Vorgang wurde abgrebrochen</br>" . utf8_encode($dbSyb->ErrorMsg()));
+If (isset($rs->fields['historie'])) {
+    if ($rs->fields['historie'] < 1) {
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('errors' => "Es gab ein Problem beim Schreiben der Historie!</br>Vorgang wurde abgrebrochen</br>" . utf8_encode($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;
     }
 } else {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Keine Historie-Rückmeldung erhalten </br>" . utf8_encode($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Keine Historie-Rückmeldung erhalten </br>" . utf8_encode($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
@@ -152,7 +152,7 @@ $i = 0;
 
 while (!$rs->EOF) {
 
-    $value{$i}{"ergebnis"} = $rs->fields{'ergebnis'};
+    $value{$i}['ergebnis'] = $rs->fields['ergebnis'];
 
     $i++;
 
@@ -168,9 +168,9 @@ if (is_file($path1 . $bezeichnung) === TRUE) {
     unlink($path1 . $bezeichnung);
 }
 
-$out{'response'}{'status'} = 0;
-$out{'response'}{'errors'} = array();
-$out{'response'}{'data'} = $value;
+$out['response']['status'] = 0;
+$out['response']['errors'] = array();
+$out['response']['data'] = $value;
 
 print json_encode($out);
 

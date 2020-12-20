@@ -37,8 +37,8 @@ $out = array();
 
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('name' => utf8_encode($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('name' => utf8_encode($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -50,8 +50,8 @@ $dbSyb->debug = false;
 if (isset($_REQUEST["lfd_nr"])) {
     $lfd_nr = $_REQUEST["lfd_nr"];
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Laufende-Nr fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Laufende-Nr fehlt!");
 
     print json_encode($out);
     return;
@@ -61,24 +61,24 @@ if (isset($_REQUEST["ausg_art_kz"])) {
     $ausg_art_kz = $_REQUEST["ausg_art_kz"];
     if ($ausg_art_kz != "null" && $ausg_art_kz != "") {
         if ((preg_match("/^[0-9a-zA-Z]{4}?$/", trim($ausg_art_kz))) == 0) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('ausg_art_kz' => "Bitte eine Ausgabe-Art entspricht nicht den Kriterien");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('ausg_art_kz' => "Bitte eine Ausgabe-Art entspricht nicht den Kriterien");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('ausg_art_kz' => "Ausgabe-Art fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('ausg_art_kz' => "Ausgabe-Art fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('ausg_art_kz' => "Ausgabe-Art fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('ausg_art_kz' => "Ausgabe-Art fehlt!");
 
     print json_encode($out);
     return;
@@ -87,24 +87,24 @@ if (isset($_REQUEST["ausg_kz"])) {
     $ausg_kz = $_REQUEST["ausg_kz"];
     if ($ausg_kz != "null" && $ausg_kz != "") {
         if ((preg_match("/^[0-9a-zA-Z]{4}?$/", trim($ausg_kz))) == 0) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('ausg_kz' => "Bitte eine Ausgabe entspricht nicht den Kriterien");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('ausg_kz' => "Bitte eine Ausgabe entspricht nicht den Kriterien");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('ausg_kz' => "Ausgabe fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('ausg_kz' => "Ausgabe fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('ausg_kz' => "Ausgabe fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('ausg_kz' => "Ausgabe fehlt!");
 
     print json_encode($out);
     return;
@@ -117,23 +117,23 @@ if (isset($_REQUEST["betrag_netto"])) {
     if ($betrag_netto != "null" && $betrag_netto != "") {
         if ((preg_match("/^[0-9,]{1,10}?$/", trim($betrag_netto))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('betrag_netto' => "Bitte den Netto-Betrag prüfen.");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('betrag_netto' => "Bitte den Netto-Betrag prüfen.");
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('betrag_netto' => "Der Netto-Betrag fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('betrag_netto' => "Der Netto-Betrag fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('betrag_netto' => "Der Netto-Betrag fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('betrag_netto' => "Der Netto-Betrag fehlt!");
 
     print json_encode($out);
 
@@ -144,8 +144,8 @@ if (isset($_REQUEST["datum"])) {
     $datum = $_REQUEST["datum"];
     
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('datum' => "Datum fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('datum' => "Datum fehlt!");
 
     print json_encode($out);
 
@@ -157,23 +157,23 @@ if (isset($_REQUEST["mwst_satz"])) {
     if ($mwst_satz != "null" && $mwst_satz != "") {
         if ((preg_match("/^[0-9.,]{1,6}?$/", trim($mwst_satz))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('mwst_satz' => "Bitte die MwSt prüfen");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('mwst_satz' => "Bitte die MwSt prüfen");
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('mwst_satz' => "Die MwSt fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('mwst_satz' => "Die MwSt fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('mwst_satz' => "Die MwSt fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('mwst_satz' => "Die MwSt fehlt!");
 
     print json_encode($out);
 
@@ -197,24 +197,24 @@ $rs = $dbSyb->Execute($sqlQuery);
 $value = array();
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('ausg_art_kz' => utf8_encode($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('ausg_art_kz' => utf8_encode($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
 }
 
-If (isset($rs->fields{'ergebnis'})) {
-    if ($rs->fields{'ergebnis'} != 1 && $rs->fields{'ergebnis'} != 0) {
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('ausg_art_kz' => "Es gab ein Problem beim Speichern in die Datenbank! </br>" . utf8_encode($dbSyb->ErrorMsg()));
+If (isset($rs->fields['ergebnis'])) {
+    if ($rs->fields['ergebnis'] != 1 && $rs->fields['ergebnis'] != 0) {
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('ausg_art_kz' => "Es gab ein Problem beim Speichern in die Datenbank! </br>" . utf8_encode($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;
     }
 } else {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('ausg_art_kz' => "Keine Ergebnis-Rückmeldung erhalten </br>" . utf8_encode($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('ausg_art_kz' => "Keine Ergebnis-Rückmeldung erhalten </br>" . utf8_encode($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
@@ -224,8 +224,8 @@ $i = 0;
 
 while (!$rs->EOF) {
 
-//    $value{$i}{"lfd_nr"} = $rs->fields{'lfd_nr'};
-    $value{$i}{"ergebnis"} = $rs->fields{'ergebnis'};
+//    $value{$i}['lfd_nr'] = $rs->fields['lfd_nr'];
+    $value{$i}['ergebnis'] = $rs->fields['ergebnis'];
 
     $i++;
 
@@ -235,9 +235,9 @@ while (!$rs->EOF) {
 
 $rs->Close();
 
-$out{'response'}{'status'} = 0;
-$out{'response'}{'errors'} = array();
-$out{'response'}{'data'} = $value;
+$out['response']['status'] = 0;
+$out['response']['errors'] = array();
+$out['response']['data'] = $value;
 
 print json_encode($out);
 

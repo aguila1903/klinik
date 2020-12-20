@@ -181,7 +181,7 @@ for($i = 0; $i < count($tmp_name_array); $i++){
             $ergebnis = "";
 
             while (!$rs->EOF) {
-                $ergebnis = $rs->fields{'ergebnis'};
+                $ergebnis = $rs->fields['ergebnis'];
 
                 $i++;
 
@@ -190,7 +190,7 @@ for($i = 0; $i < count($tmp_name_array); $i++){
 
             $rs->Close();
             
-//            if(isset($rs->fields{'ergebnis'}) && isset($rs->fields{'historie'})){
+//            if(isset($rs->fields['ergebnis']) && isset($rs->fields['historie'])){
             if ($ergebnis == 1 ) {
 
                 $result = json_encode(utf8_encode($beleg_name) . ' erfolgreich hochgeladen!');

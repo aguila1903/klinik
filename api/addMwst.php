@@ -37,8 +37,8 @@ $out = array();
 
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('name' => trim($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('name' => trim($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -54,23 +54,23 @@ if (isset($_REQUEST["mwst"])) {
     if ($mwst != "null" && $mwst != "") {
         if ((preg_match("/^[0-9.,]{1,6}?$/", trim($mwst))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('mwst' => "Bitte die MwSt prüfen");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('mwst' => "Bitte die MwSt prüfen");
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('mwst' => "Die MwSt fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('mwst' => "Die MwSt fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('mwst' => "Die MwSt fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('mwst' => "Die MwSt fehlt!");
 
     print json_encode($out);
 
@@ -92,17 +92,17 @@ $rs = $dbSyb->Execute($sqlQuery);
 $value = array();
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('prod_kz' => trim($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('prod_kz' => trim($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
 }else{
 	   
 
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $value;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $value;
 
     print json_encode($out);
 }

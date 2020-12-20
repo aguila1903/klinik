@@ -38,8 +38,8 @@ $bday = array();
 
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => trim($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => trim($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -52,8 +52,8 @@ $dbSyb->debug = false;
 if (isset($_REQUEST["lfd_nr"])) {
     $lfd_nr = $_REQUEST["lfd_nr"];
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Laufende-Nr fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Laufende-Nr fehlt!");
 
     print json_encode($out);
     return;
@@ -63,24 +63,24 @@ if (isset($_REQUEST["name"])) {
     $name = $_REQUEST["name"];
     if ($name != "null" && $name != "") {
         if (strlen($name) > 64 || strlen($name) < 1) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('name' => "Soyisim en az 64 harf'den olusmali");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('name' => "Soyisim en az 64 harf'den olusmali");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('name' => "Soyisim eksik");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('name' => "Soyisim eksik");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('name' => "Soyisim eksik");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('name' => "Soyisim eksik");
 
     print json_encode($out);
 
@@ -90,24 +90,24 @@ if (isset($_REQUEST["vorname"])) {
     $vorname = $_REQUEST["vorname"];
     if ($vorname != "null" && $vorname != "") {
         if (strlen($vorname) > 64 || strlen($vorname) < 1) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('vorname' => "Isim en az 64 harf'den olusmali");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('vorname' => "Isim en az 64 harf'den olusmali");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('vorname' => "Isim eksik");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('vorname' => "Isim eksik");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('vorname' => "Isim eksik");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('vorname' => "Isim eksik");
 
     print json_encode($out);
 
@@ -118,8 +118,8 @@ if (isset($_REQUEST["geburtstag"])) {
     $geburtstag = $_REQUEST["geburtstag"];
     if ($geburtstag != "null" && $geburtstag != "") {
         if ((preg_match("/^(([0-9]{2})+.(([0-9]{2})+.[0-9]{4}))|([ ])?$/", trim($geburtstag))) == 0) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('geburtstag' => "Doğum gününü lütfen su sekilde giriniz 24.08.1981");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('geburtstag' => "Doğum gününü lütfen su sekilde giriniz 24.08.1981");
 
             print json_encode($out);
 
@@ -130,8 +130,8 @@ if (isset($_REQUEST["geburtstag"])) {
 
             $geburtstag = $bday[2] . "-" . $bday[1] . "-" . $bday[0];
         } else {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('geburtstag' => "Girilen Dogum günü gercek bir tarih degildir.");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('geburtstag' => "Girilen Dogum günü gercek bir tarih degildir.");
 
             print json_encode($out);
 
@@ -148,8 +148,8 @@ if (isset($_REQUEST["strasse"])) {
     $strasse = $_REQUEST["strasse"];
     if ($strasse != "null" && $strasse != "") {
         if (strlen($strasse) > 1000) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('strasse' => "Adres cok uzun lütfen 1000 harfi gecmeyiniz");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('strasse' => "Adres cok uzun lütfen 1000 harfi gecmeyiniz");
 
             print json_encode($out);
 
@@ -165,8 +165,8 @@ if (isset($_REQUEST["kommentar"])) {
     $not = $_REQUEST["kommentar"];
     if ($not != "null" && $not != "") {
         if (strlen($not) > 2000) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('kommentar' => "Notunuz cok uzun lütfen 2000 harfi gecmeyiniz");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('kommentar' => "Notunuz cok uzun lütfen 2000 harfi gecmeyiniz");
 
             print json_encode($out);
 
@@ -184,8 +184,8 @@ if (isset($_REQUEST["kunden_nr"])) {
     if ($kunden_nr != "null" && $kunden_nr != "") {
         if ((preg_match("/^[0-9]{11}?$/", trim($kunden_nr))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('kunden_nr' => "T.C. Kimlik numarasi yanlis, lütfen tekrar kontrol ediniz");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('kunden_nr' => "T.C. Kimlik numarasi yanlis, lütfen tekrar kontrol ediniz");
 
             print json_encode($out);
             return;
@@ -203,8 +203,8 @@ if (isset($_REQUEST["telefon"])) {
 
         if (preg_match("/(^[0-9\/\()\-\+\s]{0,45}?$)|([ ])/", $telefon) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('telefon' => "Bitte die Tel-Nr überprüfen!");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('telefon' => "Bitte die Tel-Nr überprüfen!");
 
             print json_encode($out);
             return;
@@ -222,8 +222,8 @@ if (isset($_REQUEST["fax"])) {
 
         if (preg_match("/(^[0-9\/\()\-\+\s]{0,45}?$)|([ ])/", $fax) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('fax' => "Bitte die Fax-Nr überprüfen!");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('fax' => "Bitte die Fax-Nr überprüfen!");
 
             print json_encode($out);
             return;
@@ -242,8 +242,8 @@ if (isset($_REQUEST["email"])) {
         if ((preg_match("/^(([a-zA-Z0-9_.\\-+])+@(([a-zA-Z0-9\\-])+\\.)+[a-zA-Z0-9]{2,4})|([ ])|([null])$/", trim(utf8_decode($e_mail)))) == 0) {
             $out = array();
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('email' => "Lütfen e-Posta adresini tekrar kontrol ediniz");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('email' => "Lütfen e-Posta adresini tekrar kontrol ediniz");
 
             print json_encode($out);
 
@@ -307,46 +307,46 @@ $rs = $dbSyb->Execute($sqlQuery);
 $value = array();
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => trim($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => trim($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
 }
-If (isset($rs->fields{'ergebnis'})) {
-    if ($rs->fields{'ergebnis'} != 1 && $rs->fields{'ergebnis'} != 0) {
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('errors' => "Es gab ein Problem beim Speichern in die Datenbank! </br>" . trim($dbSyb->ErrorMsg()));
+If (isset($rs->fields['ergebnis'])) {
+    if ($rs->fields['ergebnis'] != 1 && $rs->fields['ergebnis'] != 0) {
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('errors' => "Es gab ein Problem beim Speichern in die Datenbank! </br>" . trim($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;
     }
 } else {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Keine Ergebnis-Rückmeldung erhalten </br>" . trim($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Keine Ergebnis-Rückmeldung erhalten </br>" . trim($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
 }
-If (isset($rs->fields{'historie'})) {
-    if ($rs->fields{'historie'} < 0) {
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('errors' => "Es gab ein Problem beim Schreiben der Historie!</br>Vorgang wurde abgrebrochen</br>" . trim($dbSyb->ErrorMsg()));
+If (isset($rs->fields['historie'])) {
+    if ($rs->fields['historie'] < 0) {
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('errors' => "Es gab ein Problem beim Schreiben der Historie!</br>Vorgang wurde abgrebrochen</br>" . trim($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;
     }
-} If (isset($rs->fields{'historie'})) {
-    if ($rs->fields{'historie'} == 0) {
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('errors' => "Hic bir degisiklik yapilmadi</br>" . trim($dbSyb->ErrorMsg()));
+} If (isset($rs->fields['historie'])) {
+    if ($rs->fields['historie'] == 0) {
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('errors' => "Hic bir degisiklik yapilmadi</br>" . trim($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;
     }
 } else {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => "Keine Historie-Rückmeldung erhalten </br>" . trim($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => "Keine Historie-Rückmeldung erhalten </br>" . trim($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
@@ -356,8 +356,8 @@ $i = 0;
 
 while (!$rs->EOF) {
 
-    $value{$i}{"kunden_nr"} = $rs->fields{'kunden_nr'};
-    $value{$i}{"ergebnis"} = $rs->fields{'ergebnis'};
+    $value{$i}['kunden_nr'] = $rs->fields['kunden_nr'];
+    $value{$i}['ergebnis'] = $rs->fields['ergebnis'];
 
     $i++;
 
@@ -367,9 +367,9 @@ while (!$rs->EOF) {
 
 $rs->Close();
 
-$out{'response'}{'status'} = 0;
-$out{'response'}{'errors'} = array();
-$out{'response'}{'data'} = $value;
+$out['response']['status'] = 0;
+$out['response']['errors'] = array();
+$out['response']['data'] = $value;
 
 print json_encode($out);
 

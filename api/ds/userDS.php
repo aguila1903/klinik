@@ -69,21 +69,21 @@ $value = array();
 
 while (!$rs->EOF) {
 
-    $value{$i}{"UserID"} = $rs->fields{'UserID'};
-    $value{$i}{"benutzer"} = utf8_encode($rs->fields{'benutzer'});
-    $value{$i}{"passwort"} = utf8_encode($rs->fields{'passwort'});
-    $value{$i}{"admin"} = $rs->fields{'admin'};
-    $value{$i}{"status"} = $rs->fields{'status'};
-    $value{$i}{"loginCount"} = $rs->fields{'loginCount'};
-    $value{$i}{"loginTime"} = $rs->fields{'loginTime'};
-    $value{$i}{"timeOut"} = $rs->fields{'timeOut'};
-    $value{$i}{"email"} = utf8_encode($rs->fields{'email'});
-    $value{$i}{"onlineTime"} = utf8_encode($rs->fields{'onlineTime'});
-    $value{$i}{"logoutTime"} = utf8_encode($rs->fields{'logoutTime'});
+    $value{$i}['UserID'] = $rs->fields['UserID'];
+    $value{$i}['benutzer'] = utf8_encode($rs->fields['benutzer']);
+    $value{$i}['passwort'] = utf8_encode($rs->fields['passwort']);
+    $value{$i}['admin'] = $rs->fields['admin'];
+    $value{$i}['status'] = $rs->fields['status'];
+    $value{$i}['loginCount'] = $rs->fields['loginCount'];
+    $value{$i}['loginTime'] = $rs->fields['loginTime'];
+    $value{$i}['timeOut'] = $rs->fields['timeOut'];
+    $value{$i}['email'] = utf8_encode($rs->fields['email']);
+    $value{$i}['onlineTime'] = utf8_encode($rs->fields['onlineTime']);
+    $value{$i}['logoutTime'] = utf8_encode($rs->fields['logoutTime']);
      
-        if ($value{$i}{"status"} == "O") {
+        if ($value{$i}['status'] == "O") {
         $id = 0; 
-        $value{$i}{"_hilite"} = $id;
+        $value{$i}['_hilite'] = $id;
     }
     
     $i++;

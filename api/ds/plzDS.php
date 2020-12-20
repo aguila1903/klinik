@@ -82,12 +82,12 @@ $value = array();
 
 while (!$rs->EOF) {
 
-    $value{$i}{"nr"} = $i;
+    $value{$i}['nr'] = $i;
 	if($anzeige == "ort"){
-    $value{$i}{"ort"} = utf8_encode($rs->fields{'ort_stadtteil'});
+    $value{$i}['ort'] = utf8_encode($rs->fields['ort_stadtteil']);
      }
 if($anzeige == "stadtteil"){
-    $value{$i}{"ort"} = str_replace("Hamburg ","",utf8_encode($rs->fields{'ort_stadtteil'}));
+    $value{$i}['ort'] = str_replace("Hamburg ","",utf8_encode($rs->fields['ort_stadtteil']));
      }	 
     $i++;
 

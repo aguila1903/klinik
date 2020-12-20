@@ -58,15 +58,15 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login) {
     if (isset($_REQUEST["lfd_nr"])) {
         $lfd_nr = $_REQUEST["lfd_nr"];
         if ((preg_match("/^[-0-9]{1,20}$/", trim($lfd_nr))) == 0) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('errors' => "lfd_nr hatali!");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('errors' => "lfd_nr hatali!");
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('errors' => "Laufende-Nr fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('errors' => "Laufende-Nr fehlt!");
 
         print json_encode($out);
         return;
@@ -75,8 +75,8 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login) {
     if (isset($_REQUEST["beleg_nr"])) {
         $beleg_nr = $_REQUEST["beleg_nr"];
         if ((preg_match("/^[0-9]{1,20}$/", trim($beleg_nr))) == 0) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('errors' => "beleg_nr hatali!");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('errors' => "beleg_nr hatali!");
 
             print json_encode($out);
             return;
@@ -90,7 +90,7 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login) {
             return;
         }
         
-        $lfd_nr = $rs->fields{'verkauf_an'};
+        $lfd_nr = $rs->fields['verkauf_an'];
         
         $andWhere = " and beleg_nr = ".$beleg_nr;
     }else{
@@ -135,19 +135,19 @@ where
 
     while (!$rs->EOF) {
 
-        $mwst1 = 100 - $rs->fields{'mwst'};
-        $mwst2 = ($mwst1 * $rs->fields{'gesamtpr_brutto'}) / 100;
-        $mwst3 = $rs->fields{'gesamtpr_brutto'} - $mwst2;
-        $value{$i}{"mwst_gesamtpr"} = number_format($mwst3, 4, '.', '');
-        $value{$i}{"gesamtpr_brutto"} = number_format($rs->fields{'gesamtpr_brutto'}, 2, '.', '');
-        $value{$i}{"name"} = ($rs->fields{'name'});
-        $value{$i}{"name_mit_knd_nr"} = ($rs->fields{'name_mit_knd_nr'});
-        $value{$i}{"verkauf_an"} = $rs->fields{'verkauf_an'};
-        $value{$i}{"beleg_pfad"} = ($rs->fields{'beleg_pfad'});
-        $value{$i}{"beleg_nr"} = $rs->fields{'beleg_nr'};
-        $value{$i}{"datum"} = $rs->fields{'datum'};
-        $value{$i}{"zahlfrist"} = $rs->fields{'zahlfrist'};
-        $value{$i}{"geburtstag"} = $rs->fields{'geburtstag'};
+        $mwst1 = 100 - $rs->fields['mwst'];
+        $mwst2 = ($mwst1 * $rs->fields['gesamtpr_brutto']) / 100;
+        $mwst3 = $rs->fields['gesamtpr_brutto'] - $mwst2;
+        $value{$i}['mwst_gesamtpr'] = number_format($mwst3, 4, '.', '');
+        $value{$i}['gesamtpr_brutto'] = number_format($rs->fields['gesamtpr_brutto'], 2, '.', '');
+        $value{$i}['name'] = ($rs->fields['name']);
+        $value{$i}['name_mit_knd_nr'] = ($rs->fields['name_mit_knd_nr']);
+        $value{$i}['verkauf_an'] = $rs->fields['verkauf_an'];
+        $value{$i}['beleg_pfad'] = ($rs->fields['beleg_pfad']);
+        $value{$i}['beleg_nr'] = $rs->fields['beleg_nr'];
+        $value{$i}['datum'] = $rs->fields['datum'];
+        $value{$i}['zahlfrist'] = $rs->fields['zahlfrist'];
+        $value{$i}['geburtstag'] = $rs->fields['geburtstag'];
 
         $i++;
 

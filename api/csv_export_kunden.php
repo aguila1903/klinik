@@ -28,8 +28,8 @@ $data = array();
 
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('name' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('name' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -75,24 +75,24 @@ $i = 0;
 $adresse = "";
 
 while (!$rs->EOF) { // =>>> End OF File
-    $data{$i}{0} = $rs->fields{'lfd_nr'};
-    $data{$i}{1} = $rs->fields{'kunden_nr'};
-    $data{$i}{2} = $rs->fields{'vorname'};
-    $data{$i}{3} = $rs->fields{'name'};
-    $data{$i}{4} = number_format($rs->fields{'yas'}, 0);
-    $data{$i}{5} = $rs->fields{'geburtstag'};
-    $data{$i}{6} = ($rs->fields{'telefon'});
-    $data{$i}{7} = ($rs->fields{'email'});
-    $data{$i}{8} = $rs->fields{'kommentar'};
-//    $data{$i}{"fax"} = $rs->fields{'fax'};
-//    $data{$i}{"strasse"} = ($rs->fields{'strasse'});
-//    $data{$i}{"name_voll"} = $rs->fields{'vorname'} . " " . $rs->fields{'name'};
+    $data{$i}{0} = $rs->fields['lfd_nr'];
+    $data{$i}{1} = $rs->fields['kunden_nr'];
+    $data{$i}{2} = $rs->fields['vorname'];
+    $data{$i}{3} = $rs->fields['name'];
+    $data{$i}{4} = number_format($rs->fields['yas'], 0);
+    $data{$i}{5} = $rs->fields['geburtstag'];
+    $data{$i}{6} = ($rs->fields['telefon']);
+    $data{$i}{7} = ($rs->fields['email']);
+    $data{$i}{8} = $rs->fields['kommentar'];
+//    $data{$i}['fax'] = $rs->fields['fax'];
+//    $data{$i}['strasse'] = ($rs->fields['strasse']);
+//    $data{$i}['name_voll'] = $rs->fields['vorname'] . " " . $rs->fields['name'];
 
-//    $adresse = str_replace("\n",", ", $data{$i}{"strasse"});
+//    $adresse = str_replace("\n",", ", $data{$i}['strasse']);
 //    
-//    $export .= $data{$i}{"lfd_nr"} . ";" . $data{$i}{"kunden_nr"} . ";" . $data{$i}{"vorname"} . ";" . $data{$i}{"name"} . ";" .$adresse.";"
-//            . $data{$i}{"geburtstag"} . ";" . $data{$i}{"telefon"} . ";" . $data{$i}{"fax"} . ";"
-//            . $data{$i}{"email"} . "\r\n";
+//    $export .= $data{$i}['lfd_nr'] . ";" . $data{$i}['kunden_nr'] . ";" . $data{$i}['vorname'] . ";" . $data{$i}['name'] . ";" .$adresse.";"
+//            . $data{$i}['geburtstag'] . ";" . $data{$i}['telefon'] . ";" . $data{$i}['fax'] . ";"
+//            . $data{$i}['email'] . "\r\n";
 
     $i++;
    

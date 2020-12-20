@@ -126,12 +126,12 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login) {
 
     while (!$rs->EOF) {
 
-        $value{$i}{"kunden_nr"} = $rs->fields{'kunden_nr'};
-        $value{$i}{"lfd_nr"} = $rs->fields{'lfd_nr'};
-        $value{$i}{"name"} = $rs->fields{'name'};
-        $value{$i}{"yas"} = number_format($rs->fields{'yas'},0);
-        $value{$i}{"geburtstag"} = $rs->fields{'geburtstag'};
-        $value{$i}{"anzVorg"} = $rs->fields{'anzVorg'};
+        $value{$i}['kunden_nr'] = $rs->fields['kunden_nr'];
+        $value{$i}['lfd_nr'] = $rs->fields['lfd_nr'];
+        $value{$i}['name'] = $rs->fields['name'];
+        $value{$i}['yas'] = number_format($rs->fields['yas'],0);
+        $value{$i}['geburtstag'] = $rs->fields['geburtstag'];
+        $value{$i}['anzVorg'] = $rs->fields['anzVorg'];
 
         $i++;
 

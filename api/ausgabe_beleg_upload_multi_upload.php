@@ -184,7 +184,7 @@ $type_array = $_FILES['datei']['type'];
             $ergebnis = "";
 
             while (!$rs->EOF) {
-                $ergebnis = $rs->fields{'ergebnis'};
+                $ergebnis = $rs->fields['ergebnis'];
 
                 $i++;
 
@@ -193,7 +193,7 @@ $type_array = $_FILES['datei']['type'];
 
             $rs->Close();
 
-//            if(isset($rs->fields{'ergebnis'}) && isset($rs->fields{'historie'})){
+//            if(isset($rs->fields['ergebnis']) && isset($rs->fields['historie'])){
             if ($ergebnis == 1) {
 
                 $result = json_encode(utf8_encode($beleg_name[$i]) . ' erfolgreich hochgeladen!');

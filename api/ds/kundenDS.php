@@ -92,18 +92,18 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login) {
 
     while (!$rs->EOF) {
 
-        $value{$i}{"lfd_nr"} = $rs->fields{'lfd_nr'};
-        $value{$i}{"kunden_nr"} = $rs->fields{'kunden_nr'};
-        $value{$i}{"name"} = $rs->fields{'name'};
-        $value{$i}{"vorname"} = $rs->fields{'vorname'};
-        $value{$i}{"strasse"} = ($rs->fields{'strasse'});
-        $value{$i}{"telefon"} = ($rs->fields{'telefon'});
-        $value{$i}{"email"} = ($rs->fields{'email'});
-        $value{$i}{"fax"} = $rs->fields{'fax'};
-        $value{$i}{"yas"} = number_format($rs->fields{'yas'},0);
-        $value{$i}{"geburtstag"} = $rs->fields{'geburtstag'};
-        $value{$i}{"kommentar"} = $rs->fields{'kommentar'};
-        $value{$i}{"name_voll"} = $rs->fields{'vorname'} . " " . $rs->fields{'name'};
+        $value{$i}['lfd_nr'] = $rs->fields['lfd_nr'];
+        $value{$i}['kunden_nr'] = $rs->fields['kunden_nr'];
+        $value{$i}['name'] = $rs->fields['name'];
+        $value{$i}['vorname'] = $rs->fields['vorname'];
+        $value{$i}['strasse'] = ($rs->fields['strasse']);
+        $value{$i}['telefon'] = ($rs->fields['telefon']);
+        $value{$i}['email'] = ($rs->fields['email']);
+        $value{$i}['fax'] = $rs->fields['fax'];
+        $value{$i}['yas'] = number_format($rs->fields['yas'],0);
+        $value{$i}['geburtstag'] = $rs->fields['geburtstag'];
+        $value{$i}['kommentar'] = $rs->fields['kommentar'];
+        $value{$i}['name_voll'] = $rs->fields['vorname'] . " " . $rs->fields['name'];
 
         $i++;
 

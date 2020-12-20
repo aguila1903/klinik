@@ -61,8 +61,8 @@ if (isset($_REQUEST["beleg_nr"])) {
     if ($beleg_nr != "null" && $beleg_nr != "") {
         if ((preg_match("/^[0-9\/]{1,45}?$/", trim($beleg_nr))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('beleg_nr' => "Bitte die Abrechnungsnr. prüfen.");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('beleg_nr' => "Bitte die Abrechnungsnr. prüfen.");
 
             print json_encode($out);
             return;
@@ -113,20 +113,20 @@ $value = array();
 
 while (!$rs->EOF) {
 
-    $value{$i}{"prod_kz"} = ($rs->fields{'prod_kz'});
-    $value{$i}{"aktiv"} = $rs->fields{'aktiv'};
-    $value{$i}{"bezeichnung"} = ($rs->fields{'bezeichnung'});
-    $value{$i}{"brutto_preis1"} = number_format($rs->fields{'brutto_preis1'},2, ',', '.');
-    $value{$i}{"brutto_preis2"} = number_format($rs->fields{'brutto_preis2'},2, ',', '.');
-//    $value{$i}{"brutto_preis1"} = number_format($rs->fields{'brutto_preis1'},4, ',', '.');
-//    $value{$i}{"brutto_preis2"} = number_format($rs->fields{'brutto_preis2'},4, ',', '.');
-    $value{$i}{"mwst2"} = number_format($rs->fields{'mwst'},2, ',', '.');
-    $value{$i}{"mwst"} = ($rs->fields{'lfd_nr'});
-    $value{$i}{"prod_bild"} = ($rs->fields{'prod_bild'});
+    $value{$i}['prod_kz'] = ($rs->fields['prod_kz']);
+    $value{$i}['aktiv'] = $rs->fields['aktiv'];
+    $value{$i}['bezeichnung'] = ($rs->fields['bezeichnung']);
+    $value{$i}['brutto_preis1'] = number_format($rs->fields['brutto_preis1'],2, ',', '.');
+    $value{$i}['brutto_preis2'] = number_format($rs->fields['brutto_preis2'],2, ',', '.');
+//    $value{$i}['brutto_preis1'] = number_format($rs->fields['brutto_preis1'],4, ',', '.');
+//    $value{$i}['brutto_preis2'] = number_format($rs->fields['brutto_preis2'],4, ',', '.');
+    $value{$i}['mwst2'] = number_format($rs->fields['mwst'],2, ',', '.');
+    $value{$i}['mwst'] = ($rs->fields['lfd_nr']);
+    $value{$i}['prod_bild'] = ($rs->fields['prod_bild']);
     
-    if ($value{$i}{"aktiv"} == 0) {
+    if ($value{$i}['aktiv'] == 0) {
         $id = 0; 
-        $value{$i}{"_hilite"} = $id;
+        $value{$i}['_hilite'] = $id;
     }
    
     $i++;

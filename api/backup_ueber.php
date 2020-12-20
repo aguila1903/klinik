@@ -33,15 +33,15 @@ $output = exec("C:\\windows\\system32\\cmd.exe /c $bathFileRun");
 $data = array();
 
 if ($output == 0) {
-    $data{"rueckmeldung"} = utf8_decode($path) . $dateiname.".sql";
+    $data['rueckmeldung'] = utf8_decode($path) . $dateiname.".sql";
 } else {
     
     unlink("$path$dateiname.sql");
     $out = array();
 
-    $out{'response'}{'data'} = array();
-    $out{'response'}{'status'} = -99;
-    $out{'response'}{'errors'} = "Fehler in der Matrix!";
+    $out['response']['data'] = array();
+    $out['response']['status'] = -99;
+    $out['response']['errors'] = "Fehler in der Matrix!";
 
     print json_encode($out);
 
@@ -53,9 +53,9 @@ unlink("$path$dateiname.bat");
 
 $out = array();
 
-$out{'response'}{'status'} = 0;
-$out{'response'}{'errors'} = array();
-$out{'response'}{'data'} = $data;
+$out['response']['status'] = 0;
+$out['response']['errors'] = array();
+$out['response']['data'] = $data;
 
 print json_encode($out);
 ?>

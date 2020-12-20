@@ -195,19 +195,19 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] == login) {
 
     while (!$rs->EOF) {
 
-        $mwst1 = 100 - $rs->fields{'mwst'};
-        $mwst2 = ($mwst1 * $rs->fields{'gesamtpr_brutto'}) / 100;
-        $mwst3 = $rs->fields{'gesamtpr_brutto'} - $mwst2;
-        $value{$i}{"mwst_gesamtpr"} = number_format($mwst3, 4, '.', '');
-        $value{$i}{"gesamtpr_brutto"} = number_format($rs->fields{'gesamtpr_brutto'}, 2, '.', '');
-        $value{$i}{"name"} = ($rs->fields{'name'});
-        $value{$i}{"name_mit_knd_nr"} = ($rs->fields{'name_mit_knd_nr'});
-        $value{$i}{"verkauf_an"} = $rs->fields{'verkauf_an'};
-        $value{$i}{"beleg_pfad"} = ($rs->fields{'beleg_pfad'});
-        $value{$i}{"beleg_nr"} = $rs->fields{'beleg_nr'};
-        $value{$i}{"datum"} = $rs->fields{'datum'};
-        $value{$i}{"zahlfrist"} = $rs->fields{'zahlfrist'};
-        $value{$i}{"geburtstag"} = $rs->fields{'geburtstag'};
+        $mwst1 = 100 - $rs->fields['mwst'];
+        $mwst2 = ($mwst1 * $rs->fields['gesamtpr_brutto']) / 100;
+        $mwst3 = $rs->fields['gesamtpr_brutto'] - $mwst2;
+        $value{$i}['mwst_gesamtpr'] = number_format($mwst3, 4, '.', '');
+        $value{$i}['gesamtpr_brutto'] = number_format($rs->fields['gesamtpr_brutto'], 2, '.', '');
+        $value{$i}['name'] = ($rs->fields['name']);
+        $value{$i}['name_mit_knd_nr'] = ($rs->fields['name_mit_knd_nr']);
+        $value{$i}['verkauf_an'] = $rs->fields['verkauf_an'];
+        $value{$i}['beleg_pfad'] = ($rs->fields['beleg_pfad']);
+        $value{$i}['beleg_nr'] = $rs->fields['beleg_nr'];
+        $value{$i}['datum'] = $rs->fields['datum'];
+        $value{$i}['zahlfrist'] = $rs->fields['zahlfrist'];
+        $value{$i}['geburtstag'] = $rs->fields['geburtstag'];
 
         $i++;
 

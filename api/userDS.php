@@ -8,9 +8,9 @@ $host = (htmlspecialchars($_SERVER["HTTP_HOST"]));
 $uri = rtrim(dirname(htmlspecialchars($_SERVER["PHP_SELF"])), "/\\");
 
 function login($text, $ergebnis, $benutzer, $loginTxt, $admin, $status) {
-    $data{"text"} = $text;
-    $data{"ergebnis"} = $ergebnis;
-    $data{"status"} = $status;
+    $data['text'] = $text;
+    $data['ergebnis'] = $ergebnis;
+    $data['status'] = $status;
     $_SESSION["benutzer"] = $benutzer;
     $_SESSION["login"] = $loginTxt;
     $_SESSION["admin"] = $admin;
@@ -24,9 +24,9 @@ function createLog($meldung, $ip, $benutzer, $info, $browser, $os) {
 }
 
 function errorMsg($errorMsg, $ergebnis) {
-    $data{"text"} = $errorMsg;
-    $data{"ergebnis"} = $ergebnis;
-    $data{"status"} = "";
+    $data['text'] = $errorMsg;
+    $data['ergebnis'] = $ergebnis;
+    $data['status'] = "";
     print(json_encode($data));
     die;
 }
@@ -98,9 +98,9 @@ $rs = $dbSyb->Execute($querySQL);
 if (!$rs) {
     errorMsg("Query: " . $dbSyb->ErrorMsg(),0);
 }
-$ergebnis = $rs->fields{'Ergebnis'};
-$status = $rs->fields{'status'};
-$admin = $rs->fields{'admin'};
+$ergebnis = $rs->fields['Ergebnis'];
+$status = $rs->fields['status'];
+$admin = $rs->fields['admin'];
 
 if ($ergebnis == 1 && $status == 'B') { // Passwort OK und Kullanıcı ist freigeschaltet - Başarıyla giriş yaptınız
     login("Giriş başarılı", $ergebnis, $benutzer, 1, $admin, $status);

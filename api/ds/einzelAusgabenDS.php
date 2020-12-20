@@ -79,9 +79,9 @@ $value = array();
 
 while (!$rs->EOF) {
 
-    $value{$i}{"ausg_kz"} = utf8_encode($rs->fields{'ausg_kz'});
-    $value{$i}{"ausg_art_kz"} = utf8_encode($rs->fields{'ausg_art_kz'});
-    $value{$i}{"bezeichnung"} = utf8_encode($rs->fields{'bezeichnung'});
+    $value{$i}['ausg_kz'] = utf8_encode($rs->fields['ausg_kz']);
+    $value{$i}['ausg_art_kz'] = utf8_encode($rs->fields['ausg_art_kz']);
+    $value{$i}['bezeichnung'] = utf8_encode($rs->fields['bezeichnung']);
        
     $i++;
 

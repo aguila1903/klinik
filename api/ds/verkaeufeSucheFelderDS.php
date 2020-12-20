@@ -217,76 +217,76 @@ left join kunden k on v.verkauf_an = k.lfd_nr Where status != 'P' " //[1]
 
 
 
-        if (isset($rs->fields{'prod_kz'})) {
-            $value{$i}{"prod_kz"} = ($rs->fields{'prod_kz'});
+        if (isset($rs->fields['prod_kz'])) {
+            $value{$i}['prod_kz'] = ($rs->fields['prod_kz']);
         }
-        if (isset($rs->fields{'bezeichnung'})) {
-            $value{$i}{"bezeichnung"} = ($rs->fields{'bezeichnung'});
+        if (isset($rs->fields['bezeichnung'])) {
+            $value{$i}['bezeichnung'] = ($rs->fields['bezeichnung']);
         }
-        if (isset($rs->fields{'name'})) {
-            $value{$i}{"name"} = ($rs->fields{'name'});
+        if (isset($rs->fields['name'])) {
+            $value{$i}['name'] = ($rs->fields['name']);
         }
-        if (isset($rs->fields{'verkauf_an'})) {
-            $value{$i}{"verkauf_an"} = ($rs->fields{'verkauf_an'});
+        if (isset($rs->fields['verkauf_an'])) {
+            $value{$i}['verkauf_an'] = ($rs->fields['verkauf_an']);
         }
-        if (isset($rs->fields{'datum'})) {
-            $value{$i}{"datum"} = ($rs->fields{'datum'});
+        if (isset($rs->fields['datum'])) {
+            $value{$i}['datum'] = ($rs->fields['datum']);
         }
-        if (isset($rs->fields{'beleg_nr'})) {
-            $value{$i}{"beleg_nr"} = ($rs->fields{'beleg_nr'});
+        if (isset($rs->fields['beleg_nr'])) {
+            $value{$i}['beleg_nr'] = ($rs->fields['beleg_nr']);
         }
-        if (isset($rs->fields{'zahlungsziel'})) {
-            $value{$i}{"zahlungsziel_kz"} = ($rs->fields{'zahlungsziel'});
-            if ($rs->fields{'zahlungsziel'} == "S") {
-                $value{$i}{"zahlungsziel"} = "Nakit";
-            } else if ($rs->fields{'zahlungsziel'} == "Z") {
-                $value{$i}{"zahlungsziel"} = "Kredi Kart";
+        if (isset($rs->fields['zahlungsziel'])) {
+            $value{$i}['zahlungsziel_kz'] = ($rs->fields['zahlungsziel']);
+            if ($rs->fields['zahlungsziel'] == "S") {
+                $value{$i}['zahlungsziel'] = "Nakit";
+            } else if ($rs->fields['zahlungsziel'] == "Z") {
+                $value{$i}['zahlungsziel'] = "Kredi Kart";
             }
         }
-        if (isset($rs->fields{'geburtstag'})) {
-            $value{$i}{"geburtstag"} = ($rs->fields{'geburtstag'});
+        if (isset($rs->fields['geburtstag'])) {
+            $value{$i}['geburtstag'] = ($rs->fields['geburtstag']);
         }
-        if (isset($rs->fields{'jahr'})) {
-            $value{$i}{"jahr"} = ($rs->fields{'jahr'});
+        if (isset($rs->fields['jahr'])) {
+            $value{$i}['jahr'] = ($rs->fields['jahr']);
         }
-        if (isset($rs->fields{'monat'})) {
-            $value{$i}{"monat"} = ($rs->fields{'monat'});
-            switch ($value{$i}{"monat"}) {
+        if (isset($rs->fields['monat'])) {
+            $value{$i}['monat'] = ($rs->fields['monat']);
+            switch ($value{$i}['monat']) {
                 case 1:
-                    $value{$i}{"monatAusg"} = "Ocak";
+                    $value{$i}['monatAusg'] = "Ocak";
                     break;
                 case 2:
-                    $value{$i}{"monatAusg"} = "Şubat";
+                    $value{$i}['monatAusg'] = "Şubat";
                     break;
                 case 3:
-                    $value{$i}{"monatAusg"} = "Mart";
+                    $value{$i}['monatAusg'] = "Mart";
                     break;
                 case 4:
-                    $value{$i}{"monatAusg"} = "Nisan";
+                    $value{$i}['monatAusg'] = "Nisan";
                     break;
                 case 5:
-                    $value{$i}{"monatAusg"} = "Mayıs";
+                    $value{$i}['monatAusg'] = "Mayıs";
                     break;
                 case 6:
-                    $value{$i}{"monatAusg"} = "Haziran";
+                    $value{$i}['monatAusg'] = "Haziran";
                     break;
                 case 7:
-                    $value{$i}{"monatAusg"} = "Temmuz";
+                    $value{$i}['monatAusg'] = "Temmuz";
                     break;
                 case 8:
-                    $value{$i}{"monatAusg"} = "Ağustos";
+                    $value{$i}['monatAusg'] = "Ağustos";
                     break;
                 case 9:
-                    $value{$i}{"monatAusg"} = "Eylül";
+                    $value{$i}['monatAusg'] = "Eylül";
                     break;
                 case 10:
-                    $value{$i}{"monatAusg"} = "Ekim";
+                    $value{$i}['monatAusg'] = "Ekim";
                     break;
                 case 11:
-                    $value{$i}{"monatAusg"} = "Kasım";
+                    $value{$i}['monatAusg'] = "Kasım";
                     break;
                 case 12:
-                    $value{$i}{"monatAusg"} = "Aralık";
+                    $value{$i}['monatAusg'] = "Aralık";
                     break;
             }
         }

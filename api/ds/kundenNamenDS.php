@@ -71,8 +71,8 @@ $value = array();
 
 while (!$rs->EOF) {
 
-    $value{$i}{"name"} = utf8_encode($rs->fields{'name'});
-    $value{$i}{"filial_nr"} = $rs->fields{'filial_nr'};
+    $value{$i}['name'] = utf8_encode($rs->fields['name']);
+    $value{$i}['filial_nr'] = $rs->fields['filial_nr'];
 
     $i++;
 

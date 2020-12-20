@@ -28,8 +28,8 @@ $out = array();
 
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -43,23 +43,23 @@ if (isset($_REQUEST["beleg_nr"])) {
     if ($beleg_nr != "null" && $beleg_nr != "") {
         if ((preg_match("/^[0-9\/]{1,45}?$/", trim($beleg_nr))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('errors' => "Bitte die Abrechnungsnr. prüfen. " . $beleg_nr);
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('errors' => "Bitte die Abrechnungsnr. prüfen. " . $beleg_nr);
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('errors' => "Die Abrechnungsnr. fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('errors' => "Die Abrechnungsnr. fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('errors' => "Die Abrechnungsnr. fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('errors' => "Die Abrechnungsnr. fehlt!");
 
     print json_encode($out);
 
@@ -71,16 +71,16 @@ if (isset($_REQUEST["verkauf_an"])) {
     if ($kunden_nr != "null" && $kunden_nr != "") {
         if ((preg_match("/^[0-9]{1,11}?$/", trim($kunden_nr))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('menge' => "Bitte die Menge prüfen. Maximal 11 Zeichen erlaubt");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('menge' => "Bitte die Menge prüfen. Maximal 11 Zeichen erlaubt");
 
             print json_encode($out);
             return;
         }
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('kunden_nr' => "Kunden-Nr fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('kunden_nr' => "Kunden-Nr fehlt!");
 
     print json_encode($out);
     return;
@@ -114,8 +114,8 @@ $rs = $dbSyb->Execute($sqlQuery);
 $value = array();
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
@@ -130,39 +130,39 @@ $mwst_satz = 0;
 $gesamtpr_brutto = 0;
 while (!$rs->EOF) {
 
-    $value{$i}{"lfd_nr"} = $rs->fields{'lfd_nr'};
-    $value{$i}{"prod_kz"} = ($rs->fields{'prod_kz'});
-    $value{$i}{"bezeichnung"} = mb_convert_encoding($rs->fields{'bezeichnung'}, 'CP1254', 'UTF-8');
-    $value{$i}{"bemerkung"} = mb_convert_encoding($rs->fields{'bemerkung'}, 'CP1254', 'UTF-8');
-    $value{$i}{"name"} = mb_convert_encoding($rs->fields{'name'}, 'CP1254', 'UTF-8');
-    $value{$i}{"verkauf_an"} = $rs->fields{'verkauf_an'};
-    $value{$i}{"menge"} = $rs->fields{'menge'};
-    $value{$i}{"preis_kat"} = $rs->fields{'preis_kat'};
-    $value{$i}{"mwst"} = number_format($rs->fields{'mwst'}, 0, ',', '.');
-    $value{$i}{"brutto_preis"} = number_format($rs->fields{'brutto_preis'}, 2, ',', '.');
-    $value{$i}{"gesamtpr_brutto"} = number_format($rs->fields{'gesamtpr_brutto'}, 2, ',', '.');
-    $value{$i}{"datum"} = $rs->fields{'datum'};
-    $value{$i}{"beleg_nr"} = $rs->fields{'beleg_nr'};
-    $value{$i}{"zahlungsziel"} = $rs->fields{'zahlungsziel'};
+    $value{$i}['lfd_nr'] = $rs->fields['lfd_nr'];
+    $value{$i}['prod_kz'] = ($rs->fields['prod_kz']);
+    $value{$i}['bezeichnung'] = mb_convert_encoding($rs->fields['bezeichnung'], 'CP1254', 'UTF-8');
+    $value{$i}['bemerkung'] = mb_convert_encoding($rs->fields['bemerkung'], 'CP1254', 'UTF-8');
+    $value{$i}['name'] = mb_convert_encoding($rs->fields['name'], 'CP1254', 'UTF-8');
+    $value{$i}['verkauf_an'] = $rs->fields['verkauf_an'];
+    $value{$i}['menge'] = $rs->fields['menge'];
+    $value{$i}['preis_kat'] = $rs->fields['preis_kat'];
+    $value{$i}['mwst'] = number_format($rs->fields['mwst'], 0, ',', '.');
+    $value{$i}['brutto_preis'] = number_format($rs->fields['brutto_preis'], 2, ',', '.');
+    $value{$i}['gesamtpr_brutto'] = number_format($rs->fields['gesamtpr_brutto'], 2, ',', '.');
+    $value{$i}['datum'] = $rs->fields['datum'];
+    $value{$i}['beleg_nr'] = $rs->fields['beleg_nr'];
+    $value{$i}['zahlungsziel'] = $rs->fields['zahlungsziel'];
 
     // Bei mehreren Steuersätzen die ausgewiesen werden müssen (alte Lösung)
-    /* if ($rs->fields{'mwst'} == 7.00) {
-      $mwst7 = $mwst7 + $rs->fields{'mwst_gesamtpr'};
+    /* if ($rs->fields['mwst'] == 7.00) {
+      $mwst7 = $mwst7 + $rs->fields['mwst_gesamtpr'];
       }
-      if ($rs->fields{'mwst'} == 18.00) {
-      $mwst19 = $mwst19 + $rs->fields{'mwst_gesamtpr'};
+      if ($rs->fields['mwst'] == 18.00) {
+      $mwst19 = $mwst19 + $rs->fields['mwst_gesamtpr'];
       }
-      if ($rs->fields{'mwst'} < 1) {
-      $mwst0 = $rs->fields{'mwst_gesamtpr'};
+      if ($rs->fields['mwst'] < 1) {
+      $mwst0 = $rs->fields['mwst_gesamtpr'];
       } */
 
-    $mwst1 = 100 - $rs->fields{'mwst'};
-    $mwst2 = ($mwst1 * $rs->fields{'gesamtpr_brutto'}) / 100;
-    $mwst3 = $rs->fields{'gesamtpr_brutto'} - $mwst2;
+    $mwst1 = 100 - $rs->fields['mwst'];
+    $mwst2 = ($mwst1 * $rs->fields['gesamtpr_brutto']) / 100;
+    $mwst3 = $rs->fields['gesamtpr_brutto'] - $mwst2;
     $mwst += $mwst3;
     $araToplam += $mwst2;
-    $mwst_satz = number_format($rs->fields{'mwst'}, 0, ',', '.');
-    $gesamtpr_brutto += $rs->fields{'gesamtpr_brutto'};
+    $mwst_satz = number_format($rs->fields['mwst'], 0, ',', '.');
+    $gesamtpr_brutto += $rs->fields['gesamtpr_brutto'];
 
     $i++;
 
@@ -175,7 +175,7 @@ $rs->Close();
 
 // Statement für das Adressfeld
 $sqlQuery3 = "SELECT strasse as strasse
-from kunden where lfd_nr = " . $dbSyb->Quote($value{0}{"verkauf_an"}) . ";";
+from kunden where lfd_nr = " . $dbSyb->Quote($value{0}['verkauf_an']) . ";";
 
 //file_put_contents("addProdukte.txt", $sqlQuery);
 
@@ -183,8 +183,8 @@ $rs3 = $dbSyb->Execute($sqlQuery3);
 
 
 if (!$rs3) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('errors' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('errors' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
@@ -193,10 +193,10 @@ $value3 = array();
 
 while (!$rs3->EOF) {
 
-    $value3{"strasse"} = mb_convert_encoding($rs3->fields{'strasse'}, 'CP1254', 'UTF-8');
-//    $value3{"adresszusatz"} = ($rs3->fields{'adresszusatz'});
-//    $value3{"plz"} = ($rs3->fields{'plz'});
-//    $value3{"ort"} = ($rs3->fields{'ort'});
+    $value3['strasse'] = mb_convert_encoding($rs3->fields['strasse'], 'CP1254', 'UTF-8');
+//    $value3['adresszusatz'] = ($rs3->fields['adresszusatz']);
+//    $value3['plz'] = ($rs3->fields['plz']);
+//    $value3['ort'] = ($rs3->fields['ort']);
     // den n�chsten Datensatz lesen
     $rs3->MoveNext();
 }
@@ -231,23 +231,23 @@ class PDF extends FPDF {
             if ($beleg_nr != "null" && $beleg_nr != "") {
                 if ((preg_match("/^[0-9\/]{1,45}?$/", trim($beleg_nr))) == 0) {
 
-                    $out{'response'}{'status'} = -4;
-                    $out{'response'}{'errors'} = array('errors' => "Bitte die Abrechnungsnr. prüfen. " . $beleg_nr);
+                    $out['response']['status'] = -4;
+                    $out['response']['errors'] = array('errors' => "Bitte die Abrechnungsnr. prüfen. " . $beleg_nr);
 
                     print json_encode($out);
                     return;
                 }
             } else {
-                $out{'response'}{'status'} = -1;
-                $out{'response'}{'errors'} = array('errors' => "Die Abrechnungsnr. fehlt!");
+                $out['response']['status'] = -1;
+                $out['response']['errors'] = array('errors' => "Die Abrechnungsnr. fehlt!");
 
                 print json_encode($out);
 
                 return;
             }
         } else {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('errors' => "Die Abrechnungsnr. fehlt!");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('errors' => "Die Abrechnungsnr. fehlt!");
 
             print json_encode($out);
 
@@ -258,16 +258,16 @@ class PDF extends FPDF {
             if ($kunden_nr != "null" && $kunden_nr != "") {
                 if ((preg_match("/^[0-9]{1,11}?$/", trim($kunden_nr))) == 0) {
 
-                    $out{'response'}{'status'} = -4;
-                    $out{'response'}{'errors'} = array('menge' => "Bitte die Menge prüfen. Maximal 11 Zeichen erlaubt");
+                    $out['response']['status'] = -4;
+                    $out['response']['errors'] = array('menge' => "Bitte die Menge prüfen. Maximal 11 Zeichen erlaubt");
 
                     print json_encode($out);
                     return;
                 }
             }
         } else {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('kunden_nr' => "Kunden-Nr fehlt!");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('kunden_nr' => "Kunden-Nr fehlt!");
 
             print json_encode($out);
             return;
@@ -275,8 +275,8 @@ class PDF extends FPDF {
         if (isset($_REQUEST["datum"])) {
             $datum = $_REQUEST["datum"];
         } else {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('datum' => "Datum fehlt!");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('datum' => "Datum fehlt!");
 
             print json_encode($out);
 
@@ -356,9 +356,9 @@ $pdf->Text($aw, $ah - 1, mb_convert_encoding('Başakşehir 1.Etap, Sebahattin Za
 $pdf->AddFont('Calibri', '', 'calibri.php');
 $pdf->SetFont('Calibri', '', 11); // Schrift für Adressfeld-Zelle
 // ANFANG Empfänger-Adresse
-$pdf->Text($aw, $ah + 8, $value{0}{"name"});
+$pdf->Text($aw, $ah + 8, $value{0}['name']);
 $adresse = array();
-$adresse = explode("\n", $value3{"strasse"});
+$adresse = explode("\n", $value3['strasse']);
 $a = 0;
 while (count($adresse) > $a) {
     $pdf->Text($aw, $ah + 13, $adresse[$a]);
@@ -367,11 +367,11 @@ while (count($adresse) > $a) {
 }
 
 
-//if (strlen($value3{"adresszusatz"}) > 2) {
-//    $pdf->Text($aw, $ah + 20, ($value3{"adresszusatz"}));
-//    $pdf->Text($aw, $ah + 32, $value3{"plz"} . " " . ($value3{"ort"}));
+//if (strlen($value3['adresszusatz']) > 2) {
+//    $pdf->Text($aw, $ah + 20, ($value3['adresszusatz']));
+//    $pdf->Text($aw, $ah + 32, $value3['plz'] . " " . ($value3['ort']));
 //} else {
-//    $pdf->Text($aw, $ah + 25, $value3{"plz"} . " " . ($value3{"ort"}));
+//    $pdf->Text($aw, $ah + 25, $value3['plz'] . " " . ($value3['ort']));
 //}
 // ENDE Empfänger-Adresse
 //***************** ENDE ADRESSFELD **************************
@@ -379,7 +379,7 @@ while (count($adresse) > $a) {
 //
 //***************** ANFANG RECHNUNGSRUMPF **************************
 // Betreff
-$text = "FATURA " . $value{0}{"beleg_nr"};
+$text = "FATURA " . $value{0}['beleg_nr'];
 
 $pdf->AddFont('Calibri', 'B', 'calibri.php');
 $pdf->SetFont('Calibri', 'B', 11);
@@ -388,8 +388,8 @@ $pdf->SetFont('Calibri', 'B', 11);
 
 $pdf->AddFont('Calibri', '', 'calibri.php');
 $pdf->SetFont('Calibri', '', 11);
-//$pdf->Text(10, 140, 'Sehr geehrte ' . ($value{0}{"name"}) . " Leitung,");
-//$pdf->Text(10, 120, mb_convert_encoding('Sayın ' . $value{0}{"name"} . '', 'CP1254', 'UTF-8'));
+//$pdf->Text(10, 140, 'Sehr geehrte ' . ($value{0}['name']) . " Leitung,");
+//$pdf->Text(10, 120, mb_convert_encoding('Sayın ' . $value{0}['name'] . '', 'CP1254', 'UTF-8'));
 //$pdf->Text(10, 150, mb_convert_encoding('wir erlauben uns wie folgt zu berechnen:', 'CP1254', 'UTF-8'));
 
 // Rechnungsdetails tabellarisch
@@ -617,7 +617,7 @@ while ($ii < count($value)) {
 
         $pdf->AddFont('Calibri', 'B', 'calibri.php');
         $pdf->SetFont('Calibri', '', 11);
-//        if ($value{0}{"zahlungsziel"} == "Z") {
+//        if ($value{0}['zahlungsziel'] == "Z") {
 //            $pdf->Text($rw, $rh + 30, "Bitte überweisen Sie den fälligen Betrag von " . number_format($gesamtpr_brutto, 2, ',', '.') . " TLo auf unser u.a. Konto.");
 //        } else {
 //            $pdf->Text($rw, $rh + 30, ("Der Betrag " . number_format($gesamtpr_brutto, 2, ',', '.') . " TL wurde bar bezahlt."));
@@ -657,8 +657,8 @@ if ($art == "buchen") { // Bei einer Buchung wird die Rechnungs-PDF in den Abrec
     $value = array();
 
     if (!$rs) {
-        $out{'response'}{'status'} = -4;
-        $out{'response'}{'errors'} = array('errors' => ($dbSyb->ErrorMsg()));
+        $out['response']['status'] = -4;
+        $out['response']['errors'] = array('errors' => ($dbSyb->ErrorMsg()));
 
         print json_encode($out);
         return;

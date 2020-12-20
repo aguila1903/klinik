@@ -37,8 +37,8 @@ $out = array();
 
 if (!$dbSyb->IsConnected()) {
 
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('name' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('name' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
 
@@ -52,24 +52,24 @@ if (isset($_REQUEST["prod_kz"])) {
     $prod_kz = $_REQUEST["prod_kz"];
     if ($prod_kz != "null" && $prod_kz != "") {
         if (strlen($prod_kz) != 4) {
-            $out{'response'}{'status'} = -1;
-            $out{'response'}{'errors'} = array('prod_kz' => "Bitte einen Produkt-Kürzel mit 4 Zeichen eingeben.");
+            $out['response']['status'] = -1;
+            $out['response']['errors'] = array('prod_kz' => "Bitte einen Produkt-Kürzel mit 4 Zeichen eingeben.");
 
             print json_encode($out);
 
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('prod_kz' => "Produkt-Kürzel fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('prod_kz' => "Produkt-Kürzel fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('prod_kz' => "Produkt-Kürzel fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('prod_kz' => "Produkt-Kürzel fehlt!");
     print json_encode($out);
     return;
 }
@@ -80,23 +80,23 @@ if (isset($_REQUEST["preis_kat"])) {
     if ($preis_kat != "null" && $preis_kat != "") {
         if ((preg_match("/^[1-9,]{1}?$/", trim($preis_kat))) == 0) {
 
-            $out{'response'}{'status'} = -4;
-            $out{'response'}{'errors'} = array('preis_kat' => "Bitte die Preis-Kategorie prüfen.");
+            $out['response']['status'] = -4;
+            $out['response']['errors'] = array('preis_kat' => "Bitte die Preis-Kategorie prüfen.");
 
             print json_encode($out);
             return;
         }
     } else {
-        $out{'response'}{'status'} = -1;
-        $out{'response'}{'errors'} = array('preis_kat' => "Die Preis-Kategorie fehlt!");
+        $out['response']['status'] = -1;
+        $out['response']['errors'] = array('preis_kat' => "Die Preis-Kategorie fehlt!");
 
         print json_encode($out);
 
         return;
     }
 } else {
-    $out{'response'}{'status'} = -1;
-    $out{'response'}{'errors'} = array('preis_kat' => "Die Preis-Kategorie fehlt!");
+    $out['response']['status'] = -1;
+    $out['response']['errors'] = array('preis_kat' => "Die Preis-Kategorie fehlt!");
 
     print json_encode($out);
 
@@ -115,8 +115,8 @@ $rs = $dbSyb->Execute($sqlQuery);
 $value = array();
 
 if (!$rs) {
-    $out{'response'}{'status'} = -4;
-    $out{'response'}{'errors'} = array('prod_kz' => ($dbSyb->ErrorMsg()));
+    $out['response']['status'] = -4;
+    $out['response']['errors'] = array('prod_kz' => ($dbSyb->ErrorMsg()));
 
     print json_encode($out);
     return;
@@ -125,8 +125,8 @@ if (!$rs) {
 
     while (!$rs->EOF) {
 
-        $value{"mwst"} = $rs->fields{'mwst'};
-        $value{"brutto_preis"} = $rs->fields{'brutto_preis'};
+        $value['mwst'] = $rs->fields['mwst'];
+        $value['brutto_preis'] = $rs->fields['brutto_preis'];
 
         $i++;
 
@@ -136,8 +136,8 @@ if (!$rs) {
 
     $rs->Close();
 
-    $out{'response'}{'status'} = 0;
-    $out{'response'}{'errors'} = array();
-    $out{'response'}{'data'} = $value;
+    $out['response']['status'] = 0;
+    $out['response']['errors'] = array();
+    $out['response']['data'] = $value;
 
     print json_encode($out);

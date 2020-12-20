@@ -73,8 +73,8 @@ $value = array();
 
 while (!$rs->EOF) {
 
-    $value{$i}{"mwst"} = number_format($rs->fields{'mwst'},2, ',', '.');
-    $value{$i}{"lfd_nr"} =  $rs->fields{'lfd_nr'};
+    $value{$i}['mwst'] = number_format($rs->fields['mwst'],2, ',', '.');
+    $value{$i}['lfd_nr'] =  $rs->fields['lfd_nr'];
 
     $i++;
 
